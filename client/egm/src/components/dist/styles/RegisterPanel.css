@@ -1,0 +1,19 @@
+.card{
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.card-body{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+input{
+    margin-bottom: 12px;
+}
+.card-title{
+    margin-bottom: 36px;
+    font-weight: 400;
+}
