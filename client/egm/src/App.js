@@ -1,10 +1,11 @@
 import React from 'react';
-import RegisterPanel from '../src/components/RegisterPanel'
-
+import Paths from './routes/paths'
+import { BrowserRouter } from 'react-router-dom'
 function App() {
   return (
-    <RegisterPanel></RegisterPanel>
+    <BrowserRouter>
+      <Paths></Paths>
+    </BrowserRouter>
   );
 }
-
 export default App;
