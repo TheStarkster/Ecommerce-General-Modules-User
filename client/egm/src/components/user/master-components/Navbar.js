@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import '../../dist/styles/navbar.css'
-import FontAwesome from 'react-fontawesome'
 import $ from 'jquery'
+
 class CustomNav extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {navExpanded:false}
+        this.state = { navExpanded: false }
     }
-    HandlerExpand = () =>{
-        if(this.state.navExpanded === false){
-            $('.Navbar').css('height','inherit')
-            this.setState({navExpanded:true})
-        }else{
-            $('.Navbar').css('height','60px')
-            this.setState({navExpanded:false});
+    HandlerExpand = () => {
+        if (this.state.navExpanded === false) {
+            $('.Navbar').css('height', 'inherit')
+            this.setState({ navExpanded: true })
+        } else {
+            $('.Navbar').css('height', '60px')
+            this.setState({ navExpanded: false });
         }
     }
     render() {
@@ -21,8 +21,8 @@ class CustomNav extends Component {
             <div>
                 <div className="Navbar">
                     <div className="NavBarScreen">
-                        <button className="btn btn-secondary expand" onClick={()=> this.HandlerExpand()}>
-                            <FontAwesome name='chevron-down' size="lg" />
+                        <button className="btn btn-secondary expand" onClick={() => this.HandlerExpand()}>
+                            <i className="fas fa-chevron-down"></i>
                         </button>
                         <div>
                             <ul>

@@ -48,15 +48,17 @@
 .expand {
     display: none;
     z-index: 99999;
-    position: fixed;
+    position: absolute;
     right: 38px;
     border-radius: 100px;
     background-color: #3c447c;
     transition: 0.2s;
 }
-.expand:hover{
+
+.expand:hover {
     background-color: #7379a3;
 }
+
 .BrandName {
     color: white !important;
     font-weight: bold;
@@ -70,13 +72,13 @@
         color: rgb(219, 219, 219);
         font-size: 16px;
     }
-    .BrandName{
+    .BrandName {
         padding-bottom: 26px !important;
     }
-    .expand{
+    .expand {
         display: initial;
     }
-    .Navbar{
-        height:60px;
+    .Navbar {
+        height: 60px;
     }
 }
