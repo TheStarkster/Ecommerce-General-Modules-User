@@ -1,0 +1,18 @@
+.ProductCard{
+ /* height: 38%;    */
+ /* box-shadow: 0 0 30px rgba(39, 39, 39,0.26); */
+ border-radius: 12px;
+}
+.ProductName{
+    color:rgb(39, 39, 39);
+    font-weight: bolder;
+    font-size: 32px;
+}
+.ProductBrief{
+    color:rgb(90, 90, 90);
+    font-weight: lighter;
+    font-size: 16px;
+}
+.ProductImage{
+    height: 280px;
+}

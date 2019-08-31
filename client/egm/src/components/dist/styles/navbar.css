@@ -1,0 +1,82 @@
+.Navbar {
+    background-image: url(../../assets/images/navbg.jpg);
+    overflow: hidden;
+    transition: all 0.8s ease 1s;
+    height: inherit;
+}
+
+.NavBarScreen {
+    background-color: #2320599e;
+    padding: 8px !important;
+    margin: 0px !important;
+}
+
+#root>div>div:nth-child(1)>div>div>div {
+    display: flex;
+    flex-direction: row;
+}
+
+#root>div>div:nth-child(1)>div>div>div>ul {
+    list-style: none;
+    margin: 0 !important;
+}
+
+#root>div>div:nth-child(1)>div>div>div>ul>li {
+    color: rgb(202, 202, 202);
+    display: inline-block;
+    padding: 12px;
+}
+
+#root>div>div:nth-child(1)>div>div>div>ul:nth-child(2) {
+    position: absolute;
+    right: 18px;
+}
+
+#root>div>div:nth-child(1)>div>div>div>ul:nth-child(2)>li {
+    color: white !important;
+    font-weight: bold;
+}
+
+.invisible {
+    opacity: 0;
+}
+
+.fa {
+    color: white;
+}
+
+.expand {
+    display: none;
+    z-index: 99999;
+    position: fixed;
+    right: 38px;
+    border-radius: 100px;
+    background-color: #3c447c;
+    transition: 0.2s;
+}
+.expand:hover{
+    background-color: #7379a3;
+}
+.BrandName {
+    color: white !important;
+    font-weight: bold;
+    font-size: 19px !important;
+}
+
+@media (max-width:768px) {
+    #root>div>div:nth-child(1)>div>div>div>ul>li {
+        display: block;
+        padding: 6px;
+        color: rgb(219, 219, 219);
+        font-size: 16px;
+    }
+    .BrandName{
+        padding-bottom: 26px !important;
+    }
+    .expand{
+        display: initial;
+    }
+    .Navbar{
+        height:60px;
+    }
+}

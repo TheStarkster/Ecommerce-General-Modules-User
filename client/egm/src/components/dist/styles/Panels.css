@@ -13,7 +13,7 @@
     src: url(../../assets/fonts/Allagia-Demo.ttf);
 }
 
-.card {
+.PanelCard {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -47,13 +47,18 @@
     font-family: 'Raleway-Light';
 }
 
-input {
+.Panelinput {
     margin-bottom: 16px !important;
     font-family: 'Raleway-Light';
     font-size: 16px !important;
 }
 
-body {
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
     background-image: url(../../assets/images/bg.jpg);
     background-position: left bottom;
     background-size: 980px 750px;
@@ -61,13 +66,13 @@ body {
     background-repeat: no-repeat;
 }
 
-input {
+.Panelinput {
     border-radius: 100px !important;
     padding-left: 18px !important;
     border-color: rgb(136, 191, 241) !important;
 }
 
-button {
+.Panelbutton {
     border-radius: 100px !important;
     font-family: 'Raleway-Light';
 }
@@ -101,12 +106,12 @@ button {
 }
 
 @media screen and (max-width: 768px) {
-    body {
+    .bg {
         background-image: none;
         background-color: #ffffff;
         background-image: linear-gradient(180deg, #ffffff 88%, #848484 100%);
     }
-    .card {
+    .PanelCard {
         outline: none;
         border: none;
         box-shadow: none;

@@ -17,8 +17,8 @@ class LoginPanel extends Component {
             pass: this.state.pass
         })
             .then(result => {
-                if (result === "200: Registered") {
-
+                if (result.message === "200: User Authenticated") {
+                    
                 }
             });
     }
@@ -36,20 +36,20 @@ class LoginPanel extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="bg">
                 <form onSubmit={this.SubmitHandler} method="POST">
                     <center>
-                        <Card style={{ width: '20rem' }}>
+                        <Card style={{ width: '20rem' }} className="PanelCard">
                             <Card.Body>
                                 <Card.Title>Enter Your Credentials</Card.Title>
                                 <Card.Title className="UnderTitle">To SignIn</Card.Title>
                                 <CustomMessage message={ this.props.location.state === undefined ? "": this.props.location.state.message } />
                                 <Card.Text>
-                                    <input type="email" className="form-control" id="email" name="txtemail" placeholder="email@example.com" onChange={this.EmailHandler} />
-                                <input type="password" className="form-control" id="pass" name="txtpassword" placeholder="Password" onChange={this.PasswordHandler} />
+                                    <input type="email" className="form-control Panelinput" id="email" name="txtemail" placeholder="email@example.com" onChange={this.EmailHandler} />
+                                <input type="password" className="form-control Panelinput" id="pass" name="txtpassword" placeholder="Password" onChange={this.PasswordHandler} />
                                 </Card.Text>
-                            <Button variant="primary" type="submit">Sign Up</Button>
-                            <Button variant="outline-secondary" type="button" className="NextPanel" onClick={() => { this.props.history.push('/') }}>Sign In</Button>
+                            <Button variant="primary" className="Panelbutton" type="submit">Sign Up</Button>
+                            <Button variant="outline-secondary" type="button" className="NextPanel Panelbutton" onClick={() => { this.props.history.push('/') }}>Sign In</Button>
                             </Card.Body>
                         </Card>
                     </center>

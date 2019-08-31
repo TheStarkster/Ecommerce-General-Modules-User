@@ -40,23 +40,25 @@ class RegsiterPanel extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.SubmitHandler} method="POST">
-                <center>
-                    <Card style={{ width: '20rem' }}>
-                        <Card.Body>
-                            <Card.Title>Enter Your Details</Card.Title>
-                            <Card.Title className="UnderTitle">To Register</Card.Title>
-                            <Card.Text>
-                                <input type="text" className="form-control" id="name" name="txtname" placeholder="Full Name" onChange={this.NameHandler} />
-                                <input type="email" className="form-control" id="email" name="txtemail" placeholder="email@example.com" onChange={this.EmailHandler} />
-                                <input type="password" className="form-control" id="pass" name="txtpassword" placeholder="Password" onChange={this.PasswordHandler} />
-                            </Card.Text>
-                            <Button variant="primary" type="submit">Sign Up</Button>
-                            <Button type="button" variant="outline-secondary" className="NextPanel" onClick={() => { this.props.history.push('/login') }}>Sign In</Button>
-                        </Card.Body>
-                    </Card>
-                </center>
-            </form>
+            <div className="bg">
+                <form onSubmit={this.SubmitHandler} method="POST">
+                    <center>
+                        <Card style={{ width: '20rem' }} className="PanelCard">
+                            <Card.Body>
+                                <Card.Title>Enter Your Details</Card.Title>
+                                <Card.Title className="UnderTitle">To Register</Card.Title>
+                                <Card.Text>
+                                    <input type="text" className="form-control Panelinput" id="name" name="txtname" placeholder="Full Name" onChange={this.NameHandler} />
+                                    <input type="email" className="form-control Panelinput" id="email" name="txtemail" placeholder="email@example.com" onChange={this.EmailHandler} />
+                                    <input type="password" className="form-control Panelinput" id="pass" name="txtpassword" placeholder="Password" onChange={this.PasswordHandler} />
+                                </Card.Text>
+                                <Button variant="primary" className="Panelbutton" type="submit">Sign Up</Button>
+                                <Button type="button" variant="outline-secondary" className="NextPanel Panelbutton" onClick={() => { this.props.history.push('/login') }}>Sign In</Button>
+                            </Card.Body>
+                        </Card>
+                    </center>
+                </form>
+            </div>
         )
     }
 }
