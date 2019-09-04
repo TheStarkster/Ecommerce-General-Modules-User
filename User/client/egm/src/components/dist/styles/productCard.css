@@ -1,0 +1,38 @@
+.ProductCard {
+    border: none !important;
+}
+
+.ProductCardBody {
+    padding: 16px !important;
+}
+
+.ProductName {
+    color: rgb(39, 39, 39);
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+.ProductBrief {
+    color: rgb(90, 90, 90);
+    font-weight: lighter;
+    font-size: 16px;
+}
+.CardOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.692);
+    z-index: 99999;
+}
+.BlurInProductImage{
+    filter: blur(4px);
+}
+.BlurInProductBrief{
+    filter: blur(4px);
+}
+.BlurInProductName{
+    filter: blur(4px);
+}
+.BlurInProductPrice{
+    filter: blur(4px);
+}
