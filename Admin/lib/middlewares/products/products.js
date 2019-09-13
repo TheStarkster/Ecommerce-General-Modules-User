@@ -30,26 +30,32 @@ module.exports = {
             })
     },
     DeleteProuctSingle: (req, res) => {
-        Products.deleteOne({_id:req.body._id})
-        .then(u=>{
-            res.json({
-                message:"Product Deleted"
-            })
-        })
-        .catch(e=>{
-            console.log(e)
-        })
-    },
-    DeleteProductMultiple: (req,res) => {
-        Products.deleteMany({
+        Products.deleteOne({
             _id: {
-                $in: req.body.BulkDelete
+                $in: req.body.Delete
             }
         })
-        .then(u=>{
-            res.json({
-                message:"All Product Deleted!"
+            .then(u => {
+                if (u) {
+                    res.json({
+                        message: "Product Deleted"
+                    })
+                }
             })
+            .catch(e => {
+                console.log(e)
+            })
+    },
+    DeleteProductMultiple: (req, res) => {
+        Products.deleteMany({
+            _id: {
+                $in: req.body.Delete
+            }
         })
+            .then(u => {
+                res.json({
+                    message: "All Product Deleted!"
+                })
+            })
     }
 }

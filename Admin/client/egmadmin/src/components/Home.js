@@ -19,30 +19,27 @@ class Home extends Component {
         this.state = {
             AllProduct_Panel: false,
         }
+        this.Operations = {
+            UpdateOperation: false,
+            DeleteOperation: false,
+            AddOperation: false
+        }
         this.JQstate = {
             SideBarCollapse: false
         }
         this.tableData = []
-        this.DeletedMultipleData = {
-            BulkDelete: []
-        }
         this.DeletedData = {
             Delete: []
         }
-        this.UpdatedMultipleData = {
-            BulkUpdate:[]
-        }
         this.UpdateData = {
-            UpdatedData:[]
-        }
-        this.AddMultipleData = {
-            BulkAddData: []
+            UpdatedData: []
         }
         this.AddData = {
-            AddData:[]
+            AddData: []
         }
         this.RenderAllProductPanel = this.RenderAllProductPanel.bind(this)
         this.PushDeletedTableData = this.PushDeletedTableData.bind(this)
+        this.SaveChanges = this.SaveChanges.bind(this)
         this.componentDidMount = () => {
             if (window.innerWidth <= 1024) {
                 $('.SideBarRoot').addClass('Collapse')
@@ -52,24 +49,56 @@ class Home extends Component {
             }
         }
     }
+    // componentWillMount = () =>{
+    //     console.log(this.Operations.UpdateOperation)
+    // }
     PushDeletedTableData(e) {
-        this.DeletedData.BulkDelete.push(e)
+        this.DeletedData.Delete.push(e)
+        this.Operations.DeleteOperation = true
     }
-    DeleteTableData(e){
-        if(this.DeleteTableData.BulkAddData.length === 1){
-            axios.get('http://localhost:6000/product/admin-delete-product-multiple',this.DeletedData).then(response=>{
+    PushAddedTableData(e) {
+        this.AddData.AddData.push(e)
+        this.Operations.AddOperation = true
+    }
+    PushUpdatedTableData(e) {
+        this.UpdateData.UpdatedData.push(e)
+        this.Operations.UpdateOperation = true
+    }
+    DeleteTableData(e) {
+        console.log("DeleteTableData called")
+        if (this.DeletedData.Delete.length === 1) {
+            console.log("single data to delete")
+            console.log(this.DeletedData)
+            axios.post('http://localhost:2020/product/admin-delete-product-single', this.DeletedData).then(response => {
+                console.log(response)
+            })
+        } else if (this.DeletedData.Delete.length > 1) {
+            console.log("multiple data to delete")
+            axios.post('http://localhost:2020/product/admin-delete-product-multiple', this.DeletedData).then(response => {
                 console.log(response)
             })
         }
     }
     RenderAllProductPanel() {
-        axios.get('http://localhost:2020/product/admin-fetch-product').then(response=>{
-                this.tableData = [...response.data]
-                console.log(this.tableData)
+        axios.get('http://localhost:2020/product/admin-fetch-product').then(response => {
+            this.tableData = [...response.data]
+            this.setState({
+                AllProduct_Panel: true
             })
-        this.setState({
-            AllProduct_Panel: true
         })
+    }
+    SaveChanges() {
+        console.log("SaveChanges Called")
+        if (this.Operations.UpdateOperation === true) {
+
+        }
+        if (this.Operations.DeleteOperation === true) {
+            this.DeleteTableData()
+            this.Operations.DeleteOperation = false
+        }
+        if (this.Operations.AddOperation === true) {
+
+        }
     }
     CloseSideBar = () => {
         $('.SideBarRoot').addClass('Collapse')
@@ -108,8 +137,12 @@ class Home extends Component {
                     <CustomExpansionPanel trigger={this.RenderAllProductPanel} />
                 </div>
                 <div className="w-full">
-                    {/* {this.state.AllProduct_Panel ? <MaterialTableCustom /> : null} */}
-                    <MaterialTableCustom trigger={this.PushDeletedTableData} data={this.tableData} />
+                    {this.state.AllProduct_Panel ? <MaterialTableCustom
+                        trigger={this.PushDeletedTableData}
+                        data={this.tableData}
+                        SaveChanges={this.SaveChanges}
+                    />
+                        : null}
                 </div>
             </div>
         )
@@ -173,10 +206,6 @@ function CustomExpansionPanel(props) {
     );
 }
 
-function AddDataFromTable() {
-
-}
-
 function MaterialTableCustom(props) {
     const [state, setState] = React.useState({
         columns: [
@@ -185,15 +214,7 @@ function MaterialTableCustom(props) {
             { title: 'Stock', field: 'stock', type: 'numeric' },
             { title: 'Added By', field: 'employee' },
         ],
-        data: [
-            {
-                _id: "54654654654",
-                name: 'Product',
-                price: '45.21',
-                stock: 197,
-                employee: 63,
-            },
-        ],
+        data: props.data,
     });
     return (
         <div>
@@ -232,7 +253,7 @@ function MaterialTableCustom(props) {
                         }),
                 }}
             />
-            <button className="btn btn-primary save-changes">Save Changes!</button>
+            <button className="btn btn-primary save-changes" onClick={() => props.SaveChanges()}>Save Changes!</button>
         </div>
     );
 }
