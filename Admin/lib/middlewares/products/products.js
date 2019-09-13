@@ -57,5 +57,32 @@ module.exports = {
                     message: "All Product Deleted!"
                 })
             })
+    },
+    UpdateProductMultiple: (req, res) => {
+        for (var i; i <= req.body.newData.lenght; i++) {
+            Products.update({ _id: req.body.newData[i][i] }, {
+                name: req.body.newData[i][i+1].name,
+                }
+            ).then(u => {
+                res.json({
+                    message: u
+                })
+            })
+        }
+        // console.log(req.body.newData[0][1].name)
+        // console.log(req.body.newData[0][0])
+        // Products.findById({_id:req.body.newData[0][0]}).then(
+        //     u=>{
+        //         console.log(u)
+        //     }
+        // )
+        // Products.update({ _id: req.body.newData[0][0] }, {
+        //     name: req.body.newData[0][1].name,
+        //     }
+        // ).then(u => {
+        //     res.json({
+        //         message: u
+        //     })
+        // })
     }
 }

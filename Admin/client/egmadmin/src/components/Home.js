@@ -32,13 +32,14 @@ class Home extends Component {
             Delete: []
         }
         this.UpdateData = {
-            UpdatedData: []
+            newData: [],
         }
         this.AddData = {
             AddData: []
         }
         this.RenderAllProductPanel = this.RenderAllProductPanel.bind(this)
         this.PushDeletedTableData = this.PushDeletedTableData.bind(this)
+        this.PushUpdatedTableData = this.PushUpdatedTableData.bind(this)
         this.SaveChanges = this.SaveChanges.bind(this)
         this.componentDidMount = () => {
             if (window.innerWidth <= 1024) {
@@ -60,21 +61,29 @@ class Home extends Component {
         this.AddData.AddData.push(e)
         this.Operations.AddOperation = true
     }
-    PushUpdatedTableData(e) {
-        this.UpdateData.UpdatedData.push(e)
+    PushUpdatedTableData(oldDataID,newData) {
+        var temp = [oldDataID,newData]
+        this.UpdateData.newData.push(temp)
         this.Operations.UpdateOperation = true
     }
-    DeleteTableData(e) {
-        console.log("DeleteTableData called")
+    DeleteTableData() {
         if (this.DeletedData.Delete.length === 1) {
-            console.log("single data to delete")
-            console.log(this.DeletedData)
             axios.post('http://localhost:2020/product/admin-delete-product-single', this.DeletedData).then(response => {
                 console.log(response)
             })
         } else if (this.DeletedData.Delete.length > 1) {
-            console.log("multiple data to delete")
             axios.post('http://localhost:2020/product/admin-delete-product-multiple', this.DeletedData).then(response => {
+                console.log(response)
+            })
+        }
+    }
+    UpdateTableData() {
+        if (this.UpdateData.newData.length === 1) {
+            axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
+                console.log(response)
+            })
+        } else if (this.UpdateData.newData.length > 1) {
+            axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
                 console.log(response)
             })
         }
@@ -88,16 +97,15 @@ class Home extends Component {
         })
     }
     SaveChanges() {
-        console.log("SaveChanges Called")
         if (this.Operations.UpdateOperation === true) {
-
+            this.UpdateTableData()
         }
         if (this.Operations.DeleteOperation === true) {
             this.DeleteTableData()
             this.Operations.DeleteOperation = false
         }
         if (this.Operations.AddOperation === true) {
-
+            
         }
     }
     CloseSideBar = () => {
@@ -138,7 +146,9 @@ class Home extends Component {
                 </div>
                 <div className="w-full">
                     {this.state.AllProduct_Panel ? <MaterialTableCustom
-                        trigger={this.PushDeletedTableData}
+                        triggerDeletedData={this.PushDeletedTableData}
+                        triggerUpdatedData={this.PushUpdatedTableData}
+                        triggerAddedData={this.PushAddedTableData}
                         data={this.tableData}
                         SaveChanges={this.SaveChanges}
                     />
@@ -238,6 +248,7 @@ function MaterialTableCustom(props) {
                                 resolve();
                                 const data = [...state.data];
                                 data[data.indexOf(oldData)] = newData;
+                                props.triggerUpdatedData(oldData._id,newData)
                                 setState({ ...state, data });
                             }, 600);
                         }),
@@ -247,7 +258,7 @@ function MaterialTableCustom(props) {
                                 resolve();
                                 const data = [...state.data];
                                 var DeletedData = data.splice(data.indexOf(oldData), 1);
-                                props.trigger(DeletedData[0]._id)
+                                props.triggerDeletedData(DeletedData[0]._id)
                                 setState({ ...state, data });
                             }, 600);
                         }),

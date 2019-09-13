@@ -6,5 +6,7 @@ router.get('/product/admin-fetch-product',(req,res) => Product.ProductFetch(req,
 router.post('/product/admin-create-product-single',(req,res) => Product.CreateProductSingle(req,res));
 router.post('/product/admin-delete-product-single',(req,res) => Product.DeleteProuctSingle(req,res));
 router.post('/product/admin-delete-product-multiple',(req,res) => Product.DeleteProductMultiple(req,res));
+router.post('/product/admin-update-product-single',(req,res) => Product.DeleteProuctSingle(req,res));
+router.post('/product/admin-update-product-multiple',(req,res) => Product.UpdateProductMultiple(req,res));
 
 module.exports = router;
