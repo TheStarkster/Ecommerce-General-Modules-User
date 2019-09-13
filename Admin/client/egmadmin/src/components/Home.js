@@ -21,7 +21,11 @@ class Home extends Component {
         this.JQstate = {
             SideBarCollapse: false
         }
+        this.DeletedData = {
+            BulkDelete: []
+        }
         this.RenderAllProductPanel = this.RenderAllProductPanel.bind(this)
+        this.SubmitTableData = this.SubmitTableData.bind(this)
         this.componentDidMount = () => {
             if (window.innerWidth <= 1024) {
                 $('.SideBarRoot').addClass('Collapse')
@@ -31,8 +35,9 @@ class Home extends Component {
             }
         }
     }
-    SubmitTableData(){
-
+    SubmitTableData(e) {
+        this.DeletedData.BulkDelete.push(e)
+        console.log(this.DeletedData)
     }
     RenderAllProductPanel() {
         this.setState({
@@ -141,6 +146,9 @@ function CustomExpansionPanel(props) {
     );
 }
 
+function AddDataFromTable() {
+
+}
 
 function MaterialTableCustom(props) {
     const [state, setState] = React.useState({
@@ -152,12 +160,12 @@ function MaterialTableCustom(props) {
         ],
         data: [
             {
+                _id: "54654654654",
                 name: 'Product',
                 price: '45.21',
                 stock: 197,
                 employee: 63,
             },
-
         ],
     });
     return (
@@ -190,13 +198,14 @@ function MaterialTableCustom(props) {
                             setTimeout(() => {
                                 resolve();
                                 const data = [...state.data];
-                                data.splice(data.indexOf(oldData), 1);
+                                var DeletedData = data.splice(data.indexOf(oldData), 1);
+                                props.trigger(DeletedData[0]._id)
                                 setState({ ...state, data });
                             }, 600);
                         }),
                 }}
             />
-        <button className="btn btn-primary save-changes" onClick={() => props.trigger()}>Save Changes!</button>
+            <button className="btn btn-primary save-changes">Save Changes!</button>
         </div>
     );
 }
