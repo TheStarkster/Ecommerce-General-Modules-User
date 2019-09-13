@@ -1,10 +1,11 @@
 import React from 'react';
-import Login from './components/login'
-
+import Paths from './routes/paths'
+import {BrowserRouter} from 'react-router-dom'
 function App() {
   return (
-    <Login></Login>
+    <BrowserRouter>
+      <Paths></Paths>
+    </BrowserRouter>
   )
 }
-
 export default App;

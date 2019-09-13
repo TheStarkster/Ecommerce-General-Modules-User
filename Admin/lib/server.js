@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 // MongoDB Connection
 MongoClient.connect("mongodb://localhost:27017/egm", { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => console.log('MongoDB Connected: Admin'))
   .catch(err => console.log(err));
 
 // CORS Configs
@@ -31,5 +31,5 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/paths'));
 
 // Port Configs
-const PORT = process.env.PORT || 2024;
+const PORT = process.env.PORT || 6000;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));

@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const register = require('../middlewares');
+const Product = require('../middlewares/products/products');
 
-router.get('/',(req,res) => res.send('Welcome To Admin EGM API'));
-//Registeration Paths...
-router.post('/signup',(req,res) => register.RegistrationHandler(req,res));
-router.post('/signin',(req,res) => register.SignInHandler(req,res));
+// Product Paths...
+router.get('/product/admin-fetch',(req,res) => Product.ProductFetch(req,res));
+router.get('/product/admin-create-product-single',(req,res) => Product.CreateProductSingle(req,res));
+router.get('/product/admin-delete-product-single',(req,res) => Product.DeleteProuctSingle(req,res));
+router.get('/product/admin-delete-product-multiple',(req,res) => Product.DeleteProductMultiple(req,res));
 
 module.exports = router;
