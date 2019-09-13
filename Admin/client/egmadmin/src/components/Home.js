@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MaterialTable from 'material-table';
 import React, { Component } from 'react'
+import axios from 'axios'
 import './dist/styles/home.css'
 import $ from 'jquery'
 import './dist/styles/Sidebar.css'
@@ -21,11 +22,27 @@ class Home extends Component {
         this.JQstate = {
             SideBarCollapse: false
         }
-        this.DeletedData = {
+        this.tableData = []
+        this.DeletedMultipleData = {
             BulkDelete: []
         }
+        this.DeletedData = {
+            Delete: []
+        }
+        this.UpdatedMultipleData = {
+            BulkUpdate:[]
+        }
+        this.UpdateData = {
+            UpdatedData:[]
+        }
+        this.AddMultipleData = {
+            BulkAddData: []
+        }
+        this.AddData = {
+            AddData:[]
+        }
         this.RenderAllProductPanel = this.RenderAllProductPanel.bind(this)
-        this.SubmitTableData = this.SubmitTableData.bind(this)
+        this.PushDeletedTableData = this.PushDeletedTableData.bind(this)
         this.componentDidMount = () => {
             if (window.innerWidth <= 1024) {
                 $('.SideBarRoot').addClass('Collapse')
@@ -35,11 +52,21 @@ class Home extends Component {
             }
         }
     }
-    SubmitTableData(e) {
+    PushDeletedTableData(e) {
         this.DeletedData.BulkDelete.push(e)
-        console.log(this.DeletedData)
+    }
+    DeleteTableData(e){
+        if(this.DeleteTableData.BulkAddData.length === 1){
+            axios.get('http://localhost:6000/product/admin-delete-product-multiple',this.DeletedData).then(response=>{
+                console.log(response)
+            })
+        }
     }
     RenderAllProductPanel() {
+        axios.get('http://localhost:2020/product/admin-fetch-product').then(response=>{
+                this.tableData = [...response.data]
+                console.log(this.tableData)
+            })
         this.setState({
             AllProduct_Panel: true
         })
@@ -82,7 +109,7 @@ class Home extends Component {
                 </div>
                 <div className="w-full">
                     {/* {this.state.AllProduct_Panel ? <MaterialTableCustom /> : null} */}
-                    <MaterialTableCustom trigger={this.SubmitTableData} />
+                    <MaterialTableCustom trigger={this.PushDeletedTableData} data={this.tableData} />
                 </div>
             </div>
         )

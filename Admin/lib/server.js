@@ -31,5 +31,5 @@ app.use(function (req, res, next) {
 app.use('/', require('./routes/paths'));
 
 // Port Configs
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 2020;
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
