@@ -40,6 +40,7 @@ class Home extends Component {
         this.RenderAllProductPanel = this.RenderAllProductPanel.bind(this)
         this.PushDeletedTableData = this.PushDeletedTableData.bind(this)
         this.PushUpdatedTableData = this.PushUpdatedTableData.bind(this)
+        this.PushAddedTableData = this.PushAddedTableData.bind(this)
         this.SaveChanges = this.SaveChanges.bind(this)
         this.componentDidMount = () => {
             if (window.innerWidth <= 1024) {
@@ -61,10 +62,15 @@ class Home extends Component {
         this.AddData.AddData.push(e)
         this.Operations.AddOperation = true
     }
-    PushUpdatedTableData(oldDataID,newData) {
-        var temp = [oldDataID,newData]
+    PushUpdatedTableData(oldDataID, newData) {
+        var temp = [oldDataID, newData]
         this.UpdateData.newData.push(temp)
-        this.Operations.UpdateOperation = true
+        if (this.UpdateData.newData.length === 1) {
+            axios.post('http://localhost:2020/product/admin-update-product-single', this.UpdateData).then(response => {
+                console.log(response)
+                this.UpdateData.newData = []
+            })
+        }
     }
     DeleteTableData() {
         if (this.DeletedData.Delete.length === 1) {
@@ -77,17 +83,29 @@ class Home extends Component {
             })
         }
     }
-    UpdateTableData() {
-        if (this.UpdateData.newData.length === 1) {
-            axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
+    AddedTableData() {
+        if (this.AddData.AddData.length === 1) {
+            console.log("Single Product Added")
+            axios.post('http://localhost:2020/product/admin-add-product-single', this.AddData).then(response => {
                 console.log(response)
             })
-        } else if (this.UpdateData.newData.length > 1) {
-            axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
+        } else if (this.AddData.AddData.length > 1) {
+            axios.post('http://localhost:2020/product/admin-add-product-multiple', this.AddData).then(response => {
                 console.log(response)
             })
         }
     }
+    // UpdateTableData() {
+    //     if (this.UpdateData.newData.length === 1) {
+    //         axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
+    //             console.log(response)
+    //         })
+    //     } else if (this.UpdateData.newData.length > 1) {
+    //         axios.post('http://localhost:2020/product/admin-update-product-multiple', this.UpdateData).then(response => {
+    //             console.log(response)
+    //         })
+    //     }
+    // }
     RenderAllProductPanel() {
         axios.get('http://localhost:2020/product/admin-fetch-product').then(response => {
             this.tableData = [...response.data]
@@ -98,14 +116,21 @@ class Home extends Component {
     }
     SaveChanges() {
         if (this.Operations.UpdateOperation === true) {
-            this.UpdateTableData()
+            // this.UpdateTableData()
         }
         if (this.Operations.DeleteOperation === true) {
             this.DeleteTableData()
+            this.DeletedData = {
+                Delete: []
+            }
             this.Operations.DeleteOperation = false
         }
         if (this.Operations.AddOperation === true) {
-            
+            this.AddedTableData()
+            this.AddData = {
+                AddData: []
+            }
+            this.Operations.AddOperation = false
         }
     }
     CloseSideBar = () => {
@@ -239,6 +264,7 @@ function MaterialTableCustom(props) {
                                 resolve();
                                 const data = [...state.data];
                                 data.push(newData);
+                                props.triggerAddedData(newData)
                                 setState({ ...state, data });
                             }, 600);
                         }),
@@ -248,7 +274,7 @@ function MaterialTableCustom(props) {
                                 resolve();
                                 const data = [...state.data];
                                 data[data.indexOf(oldData)] = newData;
-                                props.triggerUpdatedData(oldData._id,newData)
+                                props.triggerUpdatedData(oldData._id, newData)
                                 setState({ ...state, data });
                             }, 600);
                         }),

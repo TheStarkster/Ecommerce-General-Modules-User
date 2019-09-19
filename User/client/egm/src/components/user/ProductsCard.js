@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Badge } from 'react-bootstrap'
-import $ from 'jquery'
+// import $ from 'jquery'
 import '../dist/styles/productCard.css'
 
 class ProductsCard extends Component {
@@ -10,23 +10,27 @@ class ProductsCard extends Component {
     //     $('.ProductName').addClass('BlurInProductName')
     //     $('.ProductBrief').addClass('BlurInProductBrief')
     // }
+    constructor(props){
+        super(props)
+    }
     render() {
         return (
-            <Card style={{ width: '20rem' }} className="ProductCard">
+            <Card style={{ width: '18rem' }} className="ProductCard">
                 {/* <div className="CardOverlay"  onMouseEnter={() => this.BlurHandler()}></div> */}
                 <Card.Body className="ProductCardBody">
                     <img
                         className="ProductImage card-img-top img-adjusted"
-                        src={require('../../productImages/pro1.jpg')}
+                        height="250px"
+                        src={this.props.image}
                         alt="Product"
                     />
-                    <Card.Title className="ProductName">Product Name</Card.Title>
+                    <Card.Title className="ProductName">{this.props.name}</Card.Title>
+                    <Card.Title className="ProductBrief">{this.props.disc}</Card.Title>
                     <Card.Title>
                         <div className="ProductPrice">
-                            Price: <Badge variant="success">4500Rs</Badge>
+                            Price <Badge variant="success">Rs. {this.props.price}</Badge>
                         </div>
                     </Card.Title>
-                    <Card.Title className="ProductBrief">This is Product Brief</Card.Title>
                 </Card.Body>
             </Card>
         )

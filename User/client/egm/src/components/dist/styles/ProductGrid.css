@@ -1,0 +1,43 @@
+ .shine {
+     background: #f6f7f8;
+     background-image: linear-gradient(to right, #f3f3f3 0%, #e6e6e9 20%, #f6f7f8 40%, #f6f7f8 100%);
+     background-repeat: no-repeat;
+     background-size: 800px 204px;
+     display: inline-block;
+     position: relative;
+     animation-duration: 1s;
+     animation-fill-mode: forwards;
+     animation-iteration-count: infinite;
+     animation-name: placeholderShimmer;
+     animation-timing-function: linear;
+ }
+.ShimmerProductCard{
+    position: absolute;
+}
+ .box {
+     height: 204px;
+     width: 100%;
+ }
+
+ .box, .lines {
+     display: inline-flex;
+     flex-direction: column;
+     margin-left: 25px;
+     margin-top: 15px;
+     vertical-align: top;
+ }
+
+ .lines {
+     height: 20px;
+     margin-top: 10px;
+     width: 100%;
+ }
+
+ @keyframes placeholderShimmer {
+     0% {
+         background-position: -468px 0;
+     }
+     100% {
+         background-position: 468px 0;
+     }
+ }

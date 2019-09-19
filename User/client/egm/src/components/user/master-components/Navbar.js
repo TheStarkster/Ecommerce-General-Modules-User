@@ -26,14 +26,14 @@ class CustomNav extends Component {
                         </button>
                         <div>
                             <ul>
-                                <li className="BrandName">BrandName</li>
+                                <li className="BrandName">Dental Stall</li>
                                 <li>Products</li>
                                 <li>Catagory</li>
                                 <li>Deals</li>
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li>Gurkaran</li>
+                                <li>Guest</li>
                                 <li>Cart</li>
                             </ul>
                         </div>

@@ -58,17 +58,20 @@ module.exports = {
                 })
             })
     },
-    UpdateProductMultiple: (req, res) => {
-        for (var i; i <= req.body.newData.lenght; i++) {
-            Products.update({ _id: req.body.newData[i][i] }, {
-                name: req.body.newData[i][i+1].name,
-                }
-            ).then(u => {
-                res.json({
-                    message: u
-                })
+    UpdateProductSingle: (req, res) => {
+        // for (var i; i <= req.body.newData.lenght; i++) {
+            
+        // }
+        Products.updateOne({ _id: req.body.newData[0][0] }, {
+            name: req.body.newData[0][1].name,
+            price: req.body.newData[0][1].price,
+            stock: req.body.newData[0][1].stock,
+            }
+        ).then(u => {
+            res.json({
+                message: u
             })
-        }
+        })
         // console.log(req.body.newData[0][1].name)
         // console.log(req.body.newData[0][0])
         // Products.findById({_id:req.body.newData[0][0]}).then(
@@ -83,6 +86,36 @@ module.exports = {
         //     res.json({
         //         message: u
         //     })
+        // })
+    },
+    AddProductSingle: (req,res) =>{
+        const NewProduct = new Products({
+            name:req.body.AddData[0].name,
+            price:req.body.AddData[0].price,
+            stock:req.body.AddData[0].stock,
+            disc:"Discription Default"
+        })
+        NewProduct.save()
+        .then(u=>{
+            res.json(u)
+        })
+    },
+    AddProductMultiple: (req,res) => {
+        // console.log(req.body)
+        Products.insertMany(req.body.AddData)
+        .then(u=>{
+            if(u){
+                res.json(u)
+            }
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+        // Products.insertMany(req.body.AddData)
+        // .then(u=>{
+        //     if(u){
+        //         res.json(u)
+        //     }
         // })
     }
 }

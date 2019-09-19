@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import CustomNav from './user/master-components/Navbar'
 import ReactCarousel from './user/master-components/Carousel'
-// import HomeMain from './user/main'
+// import Tags from './user/master-components/tags'
+import SearchBar from './user/master-components/searchbar'
 import ProductGrid from './user/ProductGrid'
 
 class Home extends Component {
@@ -10,7 +11,8 @@ class Home extends Component {
             <div>
                 <CustomNav></CustomNav>
                 <ReactCarousel></ReactCarousel>
-                {/* <HomeMain></HomeMain> */}
+                <SearchBar></SearchBar>
+                {/* <Tags></Tags> */}
                 <ProductGrid></ProductGrid>
             </div>
         )

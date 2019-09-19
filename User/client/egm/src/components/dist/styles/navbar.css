@@ -33,7 +33,7 @@
 }
 
 #root>div>div:nth-child(1)>div>div>div>ul:nth-child(2)>li {
-    color: white !important;
+    color: rgb(197, 197, 197) !important;
     font-weight: bold;
 }
 
@@ -61,8 +61,8 @@
 
 .BrandName {
     color: white !important;
-    font-weight: bold;
-    font-size: 19px !important;
+    font-weight: 400;
+    font-size: 24px !important;
 }
 
 @media (max-width:768px) {
