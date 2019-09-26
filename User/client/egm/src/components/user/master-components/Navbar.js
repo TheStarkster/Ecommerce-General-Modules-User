@@ -33,7 +33,7 @@ class CustomNav extends Component {
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li>Guest</li>
+                                <li onClick={() => { this.props.history.push('/profile') }}>Guest</li>
                                 <li>Cart</li>
                             </ul>
                         </div>

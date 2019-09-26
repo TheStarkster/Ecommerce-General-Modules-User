@@ -25,6 +25,7 @@
     color: rgb(202, 202, 202);
     display: inline-block;
     padding: 12px;
+    cursor: pointer;
 }
 
 #root>div>div:nth-child(1)>div>div>div>ul:nth-child(2) {
@@ -35,6 +36,7 @@
 #root>div>div:nth-child(1)>div>div>div>ul:nth-child(2)>li {
     color: rgb(197, 197, 197) !important;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .invisible {

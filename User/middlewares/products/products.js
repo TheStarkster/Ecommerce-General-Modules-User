@@ -14,7 +14,7 @@ module.exports = {
     SearchProducts: (req, res) => {
         Products.createIndexes([{ name: 1 }])
             .then(
-                Products.find({ $text: { $search: req.params.query } })
+                Products.find()
                     .then(u => {
                         if (u) {
                             res.json({
