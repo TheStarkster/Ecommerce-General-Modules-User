@@ -1,31 +1,85 @@
-.UserAvatarCard{
+.UserAvatarCard {
     /* position: absolute;
     top:0;
     left:0; */
     background-color: transparent;
     height: 30%;
-    width:100%;
+    width: 100%;
 }
-.Avatar{
-    width:120px;
+
+#root>div>div.UserAvatarCard>center>div.UserName>h2 {
+    font-family: 'Raleway-Light';
+    padding: 8px;
+    font-weight: bold;
+}
+
+.OrderBtn {
+    width: 90%;
+    margin: 4px;
+}
+
+.OrderContent {
+    margin: 6px;
+}
+
+.Avatar {
+    width: 120px;
     height: 120px;
     border-radius: 100px;
     background-color: rgb(196, 196, 196);
-    margin:25px;
+    margin: 25px;
 }
-.ProfileRoot{
+
+.ProfileRoot {
     position: fixed;
+    top: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgb(240, 240, 240);
-    font-family: 'Raleway-Light';
+    height: 56%;
+    background-color: rgb(223, 128, 128);
+    z-index: -99999;
+    background-image: url('../../assets/images/profilebg.jpg')
+}
+
+#root>div>div.ProfileRoot>div.container>div>div>div>div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row
 }
-.UserDetail{
-    margin:48px;
+
+#root>div>div.container>div {
+    width: 100%;
+    box-shadow: 0 0;
 }
-.UserDetailUsername{
-    text-align: left;
-    margin: 38px;
+
+#root>div>div.container>div>header {
+    box-shadow: 0 0;
+    background-color: #f0f0f0;
+    outline: none;
+}
+
+#full-width-tab-0, #full-width-tab-1, #full-width-tab-2 {
+    outline: none;
+}
+
+#full-width-tabpanel-0>div>div {
+    font-family: monospace !important;
+}
+
+#full-width-tabpanel-0>div>div>div>div>div {
+    display: flex;
+    flex-direction: row;
+}
+
+.fa-edit {
+    padding: 6px;
+    padding-left: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.fa-edit:hover {
+    transform: scale(1.4);
+}
+
+#full-width-tabpanel-0>div>div>div>div {
+    padding: 16px;
 }
