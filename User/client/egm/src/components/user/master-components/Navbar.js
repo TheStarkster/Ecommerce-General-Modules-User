@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../dist/styles/navbar.css'
 import $ from 'jquery'
+import {Link} from 'react-router-dom'
 
 class CustomNav extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class CustomNav extends Component {
     render() {
         return (
             <div>
-                {this.state.showAuthPanel === true ? <UserSessionCard closePanel={this.CloseAuthPanel} /> : null}
+                {this.state.showAuthPanel === true ? <UserSessionCard history={this.props.history} closePanel={this.CloseAuthPanel} /> : null}
                 <div className="Navbar">
                     <div className="NavBarScreen">
                         <button className="btn btn-secondary expand" onClick={() => this.HandlerExpand()}>
@@ -70,7 +71,7 @@ class UserSessionCard extends Component {
     render() {
         return (
             <div className="SessionAuthCardRoot">
-                <Login closePanel={this.props.closePanel}></Login>
+                <Login closePanel={this.props.closePanel} history={this.props.history}></Login>
             </div>
         )
     }
@@ -107,7 +108,7 @@ class Login extends Component {
                     <img src={require('../../assets/icons/icons8-google-144.png')} alt="Google" width="64px" />
                 </div>
                 <div className="row">
-                    <h6>New Here? Then Register</h6>
+                    <h6 onClick={() => this.props.history.push('/')}>New Here? Then Register</h6>
                 </div>
             </div>
         )

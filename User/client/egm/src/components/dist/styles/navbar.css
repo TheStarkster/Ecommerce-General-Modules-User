@@ -127,6 +127,12 @@
 }
 .LoginRoot > .margin-15 > img{
     margin:15px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.LoginRoot > .margin-15 > img:hover{
+    margin:15px;
+    transform: scale(1.2);
 }
 @media(max-width:320px){
     .SessionAuthCardRoot{

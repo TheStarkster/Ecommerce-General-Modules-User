@@ -5,36 +5,68 @@
 .ProductCardBody {
     padding: 16px !important;
 }
+.ImageOverlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    width: 256px;
+    opacity: 1;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.363);
+    margin: 18px;
+}
+/* .ImageContainer > .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background-color: #008CBA;
+} */
 
 .ProductName {
     color: rgb(0, 0, 0);
     font-weight: 600;
     font-size: 21px;
 }
-.ProductImage{
+
+.ProductImage {
     padding: 18px;
 }
+
 .ProductBrief {
     color: rgb(116, 116, 116);
     font-weight: lighter;
     font-size: 14px;
 }
-.CardOverlay{
+
+.CardOverlay {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.692);
     z-index: 99999;
 }
-.BlurInProductImage{
+
+.BlurInProductImage {
     filter: blur(4px);
 }
-.BlurInProductBrief{
+
+.BlurInProductBrief {
     filter: blur(4px);
 }
-.BlurInProductName{
+
+.BlurInProductName {
     filter: blur(4px);
 }
-.BlurInProductPrice{
+
+.BlurInProductPrice {
     filter: blur(4px);
 }

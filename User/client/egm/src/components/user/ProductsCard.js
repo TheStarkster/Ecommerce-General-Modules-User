@@ -18,6 +18,7 @@ class ProductsCard extends Component {
             <Card style={{ width: '18rem' }} className="ProductCard">
                 {/* <div className="CardOverlay"  onMouseEnter={() => this.BlurHandler()}></div> */}
                 <Card.Body className="ProductCardBody">
+                    <div className="ImageOverlay"></div>
                     <img
                         className="ProductImage card-img-top img-adjusted"
                         height="250px"
