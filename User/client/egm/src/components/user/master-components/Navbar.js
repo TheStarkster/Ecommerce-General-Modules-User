@@ -5,7 +5,10 @@ import $ from 'jquery'
 class CustomNav extends Component {
     constructor(props) {
         super(props);
-        this.state = { navExpanded: false }
+        this.state = { 
+            navExpanded: false,
+            showAuthPanel: false
+         }
     }
     HandlerExpand = () => {
         if (this.state.navExpanded === false) {
@@ -16,9 +19,17 @@ class CustomNav extends Component {
             this.setState({ navExpanded: false });
         }
     }
+    ValidateUserSession = () => {
+        if(this.props.loggedIn === false){
+            this.setState({
+                showAuthPanel:true
+            })
+        }
+    }
     render() {
         return (
             <div>
+                {this.state.showAuthPanel == true ? <UserSessionCard /> : null}
                 <div className="Navbar">
                     <div className="NavBarScreen">
                         <button className="btn btn-secondary expand" onClick={() => this.HandlerExpand()}>
@@ -33,7 +44,7 @@ class CustomNav extends Component {
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li onClick={() => { this.props.history.push('/profile') }}>Guest</li>
+                                <li onClick={() => {this.ValidateUserSession()}}>Guest</li>
                                 <li>Cart</li>
                             </ul>
                         </div>
@@ -45,3 +56,51 @@ class CustomNav extends Component {
 }
 
 export default CustomNav
+
+class UserSessionCard extends Component {
+    // constructor(props){
+    // super(props)
+    // }
+    render() {
+        return (
+            <div className="SessionAuthCardRoot">
+                <Login></Login>
+            </div>
+        )
+    }
+}
+class Login extends Component {
+    render() {
+        return (
+            <div className="LoginRoot">
+                <div className="CloseBtn">
+                        <i className="fa fa-times"></i>
+                    </div>
+                <div className="row">
+                    <h3>Welcome Back!</h3>
+                    <h5>Please Login To Continue</h5>
+                </div>
+                <div className="row">
+                    <input type="text" className="form-control" placeholder="Email" />
+                </div>
+                <div className="row">
+                    <input type="password" className="form-control" placeholder="Password" />
+                </div>
+                <div className="row">
+                    <button className="form-control btn btn-primary">Login</button>
+                </div>
+                <hr></hr>
+                <div className="row">
+                    <h5>Or Login With</h5>
+                </div>
+                <div className="d-flex justify-content-center margin-15">
+                    <img src={require('../../assets/icons/icons8-facebook-240.png')} alt="Facebook" width="64px" />
+                    <img src={require('../../assets/icons/icons8-google-144.png')} alt="Google" width="64px" />
+                </div>
+                <div className="row">
+                    <h6>New Here? Then Register</h6>
+                </div>
+            </div>
+        )
+    }
+}

@@ -142,7 +142,7 @@ function FullWidthTabs() {
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <Card>
+                <Card className="ProfileOrderCard">
                         <Card.Header>
                             <div className="row">
                                 <div className="col">
@@ -214,7 +214,7 @@ function FullWidthTabs() {
                             </div>
                         </Card.Body>
                     </Card>
-                    <Card>
+                    <Card className="ProfileOrderCard">
                         <Card.Header>
                             <div className="row">
                                 <div className="col">
@@ -286,7 +286,7 @@ function FullWidthTabs() {
                             </div>
                         </Card.Body>
                     </Card>
-                    <Card>
+                    <Card className="ProfileOrderCard">
                         <Card.Header>
                             <div className="row">
                                 <div className="col">

@@ -1,3 +1,7 @@
+@font-face{
+    font-family: 'OpenSans-Light';
+    src: url('../../assets/fonts/OpenSans-Light.ttf')
+}
 .UserAvatarCard {
     /* position: absolute;
     top:0;
@@ -61,9 +65,12 @@
 }
 
 #full-width-tabpanel-0>div>div {
-    font-family: monospace !important;
+    font-family: 'OpenSans-Light' !important;
 }
-
+#full-width-tabpanel-0 > div > div > div > div > h5{
+    font-weight: bolder;
+    font-size: 16px;
+}
 #full-width-tabpanel-0>div>div>div>div>div {
     display: flex;
     flex-direction: row;
@@ -82,4 +89,7 @@
 
 #full-width-tabpanel-0>div>div>div>div {
     padding: 16px;
+}
+.ProfileOrderCard{
+    margin:18px;
 }

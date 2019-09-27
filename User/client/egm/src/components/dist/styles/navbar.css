@@ -84,3 +84,102 @@
         height: 60px;
     }
 }
+.SessionAuthCardRoot{
+    position: fixed;
+    height: 100%;
+    width:100%;
+    background-color: rgba(14, 14, 14, 0.822);
+    z-index: 99999999;
+}
+.LoginRoot{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 380px;
+    height: 480px;
+    background-color: rgb(223, 223, 223);
+    border-radius: 3px;
+    padding:46px;
+}
+.LoginRoot > .row > input{
+    margin-bottom: 8px;
+}
+.LoginRoot > .row > h3{
+    margin:auto;
+    margin-bottom: 5px;
+    font-family: 'Raleway-Light'
+}
+.LoginRoot > .row > h5{
+    font-size: 16px;
+    margin:auto;
+    margin-bottom: 30px;
+    font-family: 'Raleway-Light';
+    color:rgb(102, 102, 102);
+}
+.LoginRoot > .row > h6{
+    font-size: 16px;
+    margin:auto;
+    font-family: 'Raleway-Light';
+    color:rgb(102, 102, 102);
+    font-weight: bold;
+    cursor: pointer;
+}
+.LoginRoot > .margin-15 > img{
+    margin:15px;
+}
+@media(max-width:320px){
+    .SessionAuthCardRoot{
+        background-color: rgb(223, 223, 223);
+    }
+    .LoginRoot{
+        padding:76px;
+    }
+}
+
+.Close{
+    font-size: 16px !important;
+    font-weight: lighter !important;
+}
+.pad-x{
+    padding: 12px;
+}
+.fa-times{
+    position: absolute;
+    top:0;
+    cursor: pointer;
+    padding:10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #969696;
+    position: absolute;
+    border-radius: 100px;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    margin: 8px;
+    transition: 0.4s;
+    right:0;
+}
+.fa-times:after {
+    color: rgb(190, 190, 190);
+    content: 'Close';
+    font-weight: lighter;
+    font-size: 16px;
+    display: block;
+    float: right;
+    opacity: 0;
+    overflow: hidden;
+    width: 0;
+    transition: 0.4s;
+}
+.fa-times:hover {
+    background: rgb(87, 87, 87);
+}
+.fa-times:hover:after {
+    opacity: 1;
+    width: 50px;
+    margin-left:8px;
+}
