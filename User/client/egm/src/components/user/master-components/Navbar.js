@@ -5,10 +5,11 @@ import $ from 'jquery'
 class CustomNav extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             navExpanded: false,
             showAuthPanel: false
-         }
+        }
+        this.CloseAuthPanel = this.CloseAuthPanel.bind(this)
     }
     HandlerExpand = () => {
         if (this.state.navExpanded === false) {
@@ -20,16 +21,21 @@ class CustomNav extends Component {
         }
     }
     ValidateUserSession = () => {
-        if(this.props.loggedIn === false){
+        if (this.props.loggedIn === false) {
             this.setState({
-                showAuthPanel:true
+                showAuthPanel: true
             })
         }
+    }
+    CloseAuthPanel = () => {
+        this.setState({
+            showAuthPanel: false
+        })
     }
     render() {
         return (
             <div>
-                {this.state.showAuthPanel == true ? <UserSessionCard /> : null}
+                {this.state.showAuthPanel === true ? <UserSessionCard closePanel={this.CloseAuthPanel} /> : null}
                 <div className="Navbar">
                     <div className="NavBarScreen">
                         <button className="btn btn-secondary expand" onClick={() => this.HandlerExpand()}>
@@ -44,7 +50,7 @@ class CustomNav extends Component {
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li onClick={() => {this.ValidateUserSession()}}>Guest</li>
+                                <li onClick={() => { this.ValidateUserSession() }}>Guest</li>
                                 <li>Cart</li>
                             </ul>
                         </div>
@@ -64,18 +70,21 @@ class UserSessionCard extends Component {
     render() {
         return (
             <div className="SessionAuthCardRoot">
-                <Login></Login>
+                <Login closePanel={this.props.closePanel}></Login>
             </div>
         )
     }
 }
 class Login extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <div className="LoginRoot">
-                <div className="CloseBtn">
-                        <i className="fa fa-times"></i>
-                    </div>
+                <div className="CloseBtn" onClick={() => { this.props.closePanel() }}>
+                    <i className="fa fa-times"></i>
+                </div>
                 <div className="row">
                     <h3>Welcome Back!</h3>
                     <h5>Please Login To Continue</h5>

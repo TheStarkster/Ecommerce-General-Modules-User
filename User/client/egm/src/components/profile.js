@@ -15,7 +15,7 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <CustomNav history={this.props.history}></CustomNav>
+                <CustomNav history={this.props.history} loggedIn={false}></CustomNav>
                 <div className="ProfileRoot">
                 </div>
                 <div className="UserAvatarCard">

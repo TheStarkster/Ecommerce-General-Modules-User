@@ -9,7 +9,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <CustomNav history={this.props.history}></CustomNav>
+                <CustomNav history={this.props.history} loggedIn={false}></CustomNav>
                 <ReactCarousel></ReactCarousel>
                 <SearchBar></SearchBar>
                 {/* <Tags></Tags> */}
