@@ -14,29 +14,30 @@
     height: 250px;
     width: 256px;
     opacity: 1;
-    transition: .5s ease;
-    background-color: rgba(0, 0, 0, 0.363);
+    transition: .2s ease;
+    background-color: transparent;
     margin: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-/* .ImageContainer > .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 1;
-    transition: .5s ease;
-    background-color: #008CBA;
-} */
-
 .ProductName {
     color: rgb(0, 0, 0);
     font-weight: 600;
     font-size: 21px;
 }
-
+/* .product-image-top-layer{
+    height: 100%;
+} */
+.ImageOverlay > div > div > img{
+    padding:15px;
+    background-color: #ffca07d9;
+    border-radius: 100px;
+    margin: 5px;
+    transform: scale(0.5);
+    opacity: 1;
+}
 .ProductImage {
     padding: 18px;
 }
