@@ -4,54 +4,50 @@ import $ from 'jquery'
 import '../dist/styles/productCard.css'
 
 class ProductsCard extends Component {
-    // BlurHandler = () => {
-    //     $('.ProductImage').addClass('BlurInProductImage')
-    //     $('.ProductPrice').addClass('BlurInProductPrice')
-    //     $('.ProductName').addClass('BlurInProductName')
-    //     $('.ProductBrief').addClass('BlurInProductBrief')
-    // }
     constructor(props) {
         super(props)
-        
+        this.componentDidMount = () => {
+            $('.ProductOptionContainer').css('opacity', '0')
+        }
     }
-    componentWillMount = () =>{
-        $('.ImageOverlay').hover(function(){
-            alert('kfoid')
-            $('.ImageOverlay > div > div > img').css('transform','scale(1.5)')
-        })
+    ShowProductOption = (id) => {
+        $('#ProductOptionContainer' + id).css('opacity', '1')
+        $('.ProductOption').css('transform', 'scale(1)')
     }
+    HideProductOption = (id) => {
+        $('#ProductOptionContainer' + id).css('opacity', '0')
+        $('.ProductOption').css('transform', 'scale(0.4)')
+    }
+
     render() {
         return (
-            <Card style={{ width: '18rem' }} className="ProductCard">
-                {/* <div className="CardOverlay"  onMouseEnter={() => this.BlurHandler()}></div> */}
+            <Card style={{ width: '18rem' }} className="ProductCard" id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
                 <Card.Body className="ProductCardBody">
-                    <div className="ImageOverlay">
-                        <div>
-                            <div class="d-flex justify-content-center product-image-top-layer">
-                                <img
-                                    className="img-adjusted"
-                                    src={require('../assets/icons/icons8-buy-24.png')}
-                                    alt="Product"
-                                />
-                                <img
-                                    className="img-adjusted"
-                                    src={require('../assets/icons/icons8-love-24.png')}
-                                    alt="Product"
-                                />
-                                <img
-                                    className="img-adjusted"
-                                    src={require('../assets/icons/icons8-rupee-24.png')}
-                                    alt="Product"
-                                />
-                            </div>
+                    <div className="ProductImageContainer" id="ProductImageContainer">
+                        <div className="ProductOptionContainer d-flex justify-content-center" id={"ProductOptionContainer" + this.props.id} >
+                            <img
+                                className="ProductOption"
+                                src={require('../assets/icons/icons8-buy-24.png')}
+                                alt="Product"
+                            />
+                            <img
+                                className="ProductOption"
+                                src={require('../assets/icons/icons8-love-24.png')}
+                                alt="Product"
+                            />
+                            <img
+                                className="ProductOption"
+                                src={require('../assets/icons/icons8-rupee-24.png')}
+                                alt="Product"
+                            />
                         </div>
+                        <img
+                            className="ProductImage card-img-top img-adjusted"
+                            height="250px"
+                            src={this.props.image}
+                            alt="Product"
+                        />
                     </div>
-                    <img
-                        className="ProductImage card-img-top img-adjusted"
-                        height="250px"
-                        src={this.props.image}
-                        alt="Product"
-                    />
                     <Card.Title className="ProductName">{this.props.name}</Card.Title>
                     <Card.Title className="ProductBrief">{this.props.disc}</Card.Title>
                     <Card.Title>

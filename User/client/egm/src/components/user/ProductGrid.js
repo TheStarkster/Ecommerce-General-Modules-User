@@ -38,6 +38,7 @@ class ProductGrid extends Component {
                 disc={this.products[i].disc}
                 price={this.products[i].price}
                 image={this.products[i].image}
+                id={i}
             ></ProductsCard>)
         }
         return CardArray
