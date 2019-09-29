@@ -15,10 +15,10 @@ class Paths extends Component {
                 <Route exact path="/Login" component={LoginPanel} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/profile" component={Profile} />
-                <Route exact path="/product/*" component={Product} />
+                <Route path="/product" component={Product} />
                 <Route path="*" component={() => "404 NOT FOUND"} />
             </Switch>
-        )
+        )   
     }
 }
 export default Paths
