@@ -13,7 +13,7 @@ class Home extends Component {
                 <ReactCarousel></ReactCarousel>
                 <SearchBar></SearchBar>
                 {/* <Tags></Tags> */}
-                <ProductGrid></ProductGrid>
+                <ProductGrid history={this.props.history}></ProductGrid>
             </div>
         )
     }

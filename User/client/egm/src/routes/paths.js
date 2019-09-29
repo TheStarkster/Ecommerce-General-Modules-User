@@ -4,6 +4,7 @@ import RegisterPanel from '../components/RegisterPanel'
 import LoginPanel from '../components/LoginPanel'
 import Home from '../components/Home'
 import Profile from '../components/profile'
+import Product from '../components/user/master-components/product'
 
 class Paths extends Component {
     render() {
@@ -14,6 +15,7 @@ class Paths extends Component {
                 <Route exact path="/Login" component={LoginPanel} />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/profile" component={Profile} />
+                <Route exact path="/product/*" component={Product} />
                 <Route path="*" component={() => "404 NOT FOUND"} />
             </Switch>
         )

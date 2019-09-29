@@ -1,5 +1,6 @@
 .ProductCard {
     border: none !important;
+    cursor: pointer;
 }
 
 .ProductCardBody {

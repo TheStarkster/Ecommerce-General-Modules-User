@@ -21,7 +21,7 @@ class ProductsCard extends Component {
 
     render() {
         return (
-            <Card style={{ width: '18rem' }} className="ProductCard" id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
+            <Card style={{ width: '18rem' }} className="ProductCard" onClick={() => this.props.history.push('/product/'+this.props.productID)} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
                 <Card.Body className="ProductCardBody">
                     <div className="ProductImageContainer" id="ProductImageContainer">
                         <div className="ProductOptionContainer d-flex justify-content-center" id={"ProductOptionContainer" + this.props.id} >
