@@ -63,8 +63,8 @@ class Product extends Component {
                                 <span className="badge badge-success ProductMainStockStatus">In Stock</span>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col-12 tablet-mode">
+                        <div className="row tablet-mode-row">
+                            <div className="col-12 tablet-mode d-flex flex-column align-items-center">
                                 {/* <div className="col-12"> */}
                                     <button className="ProductMainOptionAddToCart option-img"><img
                                         src={require('../../assets/icons/icons8-buy-24.png')}
@@ -101,7 +101,7 @@ class Product extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row desktop-mode-row">
                     <div className="col-6 desktop-mode d-flex justify-content-center">
                         <button className="ProductMainOptionAddToCart option-img"><img
                             src={require('../../assets/icons/icons8-buy-24.png')}

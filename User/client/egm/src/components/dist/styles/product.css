@@ -12,6 +12,12 @@
         display: none !important;
     }
 }
+.desktop-mode-row{
+    margin: 0 !important;
+}
+.tablet-mode-row{
+    margin: 0 !important;
+}
 
 @media(max-width:768px) {
     .desktop-mode {
@@ -19,6 +25,9 @@
     }
     .ProductMainOptionAddToCart, .ProductMainOptionWishList, .ProductMainOptionBuy{
         width: 100% !important;
+    }
+    .ProductMainImage > img{
+        width:300px !important;
     }
 }
 
