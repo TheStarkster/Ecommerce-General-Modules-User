@@ -2,6 +2,10 @@
     font-family: 'Raleway-Light';
     src: url(../../assets/fonts/Raleway-Light.ttf);
 }
+@font-face {
+    font-family: 'Ainslie';
+    src: url(../../assets/fonts/Ainslie.ttf);
+}
 
 @font-face {
     font-family: 'Quicksand-Regular';
@@ -17,11 +21,28 @@
     font-family: 'Allagia-Demo';
     src: url(../../assets/fonts/Allagia-Demo.ttf);
 }
-
-.Panel-BrandName {
-    font-family: 'Quicksand-Regular';
-    font-size: 3rem;
-    padding:24px;
+.DentalStall-Logo{
+    width:60px;
+    height:60px;
+    border-radius: 100px;
+    margin-top: 16px;
+    opacity: 0.7;
+}
+.Panel-BrandName{
+    display: flex;
+    justify-content: center;
+}
+.Panel-BrandName-Dental{
+    font-family: 'Ainslie';
+    font-size: 4rem;
+    font-style: italic;
+    color:#4b6679;
+}
+.Panel-BrandName-Stall{
+    font-family: 'Ainslie';
+    font-size: 4rem;
+    font-style: italic;
+    color:#40d965;
 }
 
 .PanelCard {
@@ -117,7 +138,7 @@
     /* color: #007bff; */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .bg {
         background-image: none;
         background-color: #ffffff;
@@ -128,6 +149,15 @@
         border: none;
         box-shadow: none;
         background-color: transparent;
+    }
+    .Panel-BrandName-Dental {
+        font-size: 3rem;
+        padding-top:14px;
+    }
+    .Panel-BrandName-Stall {
+        font-size: 3rem;
+        padding-top:14px;
+
     }
 }
 

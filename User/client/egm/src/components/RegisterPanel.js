@@ -73,7 +73,10 @@ class RegsiterPanel extends Component {
                 <form onSubmit={this.SubmitHandler} method="POST">
                     <center>
                         {this.state.ShowSocialPanel ?
-                            <h2 className="Panel-BrandName">DentalStall</h2>
+                            <div className="Panel-BrandName">
+                                <img src={require('./assets/icons/logo-small.png')} alt="DentalStall" className="DentalStall-Logo img-adjusted"></img>
+                                <div className="Panel-BrandName-Dental">Dental</div><div className="Panel-BrandName-Stall">Stall</div>
+                            </div>
                             :
                             null
                         }
