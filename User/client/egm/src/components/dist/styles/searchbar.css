@@ -17,3 +17,16 @@
     font-size: 2rem;
     color: rgb(138, 138, 138);
 }
+@media(max-width:425px){
+    .Searchbar{
+        height: 60px;
+        font-size: 16px;
+        padding-left: 52px;
+    }
+    .fa-search{
+        position: absolute;
+        padding: 22px;
+        font-size: 1rem;
+        color: rgb(138, 138, 138);
+    }
+}

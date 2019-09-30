@@ -22,14 +22,11 @@
  .box, .lines {
      display: inline-flex;
      flex-direction: column;
-     margin-left: 25px;
-     margin-top: 15px;
      vertical-align: top;
  }
 
  .lines {
      height: 20px;
-     margin-top: 10px;
      width: 100%;
  }
 
