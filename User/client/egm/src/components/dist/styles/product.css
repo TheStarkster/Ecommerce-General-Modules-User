@@ -3,15 +3,36 @@
     padding-top: 28px;
 }
 
+.ProductRoot {
+    margin: 0 !important;
+}
+
+@media(min-width:768px) {
+    .tablet-mode {
+        display: none !important;
+    }
+}
+
+@media(max-width:768px) {
+    .desktop-mode {
+        display: none !important;
+    }
+    .ProductMainOptionAddToCart, .ProductMainOptionWishList, .ProductMainOptionBuy{
+        width: 100% !important;
+    }
+}
+
 .ProductMainStockStatus {
     padding: 8px;
     font-size: 16px;
     margin-top: 8px;
     background-color: #3fc35d
 }
-.ProductMainBrief{
+
+.ProductMainBrief {
     color: rgb(110, 110, 110);
 }
+
 .ProductMainFeature {
     margin-top: 28px;
 }
@@ -19,4 +40,29 @@
 .ProductMainPrice {
     font-size: 24px;
     margin-top: 8px;
+}
+
+.ProductMainOptionAddToCart, .ProductMainOptionWishList, .ProductMainOptionBuy {
+    border-radius: 100px;
+    border: none;
+    outline: none !important;
+    padding: 12px;
+    margin: 12px;
+    transition: .3s;
+}
+
+.option-img>img {
+    padding-right: 8px;
+}
+
+.ProductMainOptionAddToCart:hover {
+    background-color: #5db3ec;
+}
+
+.ProductMainOptionWishList:hover {
+    background-color: #ee994e;
+}
+
+.ProductMainOptionBuy:hover {
+    background-color: #45d481;
 }

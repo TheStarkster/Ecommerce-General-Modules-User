@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../dist/styles/navbar.css'
 import $ from 'jquery'
-import {Link} from 'react-router-dom'
 
 class CustomNav extends Component {
     constructor(props) {
@@ -11,13 +10,33 @@ class CustomNav extends Component {
             showAuthPanel: false
         }
         this.CloseAuthPanel = this.CloseAuthPanel.bind(this)
+
+        this.componentDidMount = () => {
+            $(window).trigger('load')
+            $(window).on('load resize', function () {
+                var win = $(this)
+                if (win.width() > 768) {
+                    $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(2)').css('opacity', '1')
+                    $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(3)').css('opacity', '1')
+                } else {
+                    $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(2)').css('opacity', '0')
+                    $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(3)').css('opacity', '0')
+                }
+            })
+        }
     }
     HandlerExpand = () => {
         if (this.state.navExpanded === false) {
             $('.Navbar').css('height', 'inherit')
+            $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(2)').css('opacity', '1')
+            $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(3)').css('opacity', '1')
             this.setState({ navExpanded: true })
         } else {
             $('.Navbar').css('height', '60px')
+            $('.Navbar').css('opacity', '1')
+
+            $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(2)').css('opacity', '0')
+            $('.NavBarScreen > div > ul:nth-child(2) > li:nth-child(3)').css('opacity', '0')
             this.setState({ navExpanded: false });
         }
     }
@@ -51,8 +70,8 @@ class CustomNav extends Component {
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li onClick={() => { this.ValidateUserSession() }}>Guest</li>
-                                <li>Cart</li>
+                                <li className="Other-li" onClick={() => { this.ValidateUserSession() }}>Guest</li>
+                                <li className="Other-li">Cart</li>
                             </ul>
                         </div>
                     </div>
