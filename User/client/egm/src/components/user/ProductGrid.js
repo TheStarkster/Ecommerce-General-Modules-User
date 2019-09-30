@@ -14,7 +14,7 @@ class ProductGrid extends Component {
         }
     }
     componentWillMount = () => {
-        axios.get('http://localhost:2024/User-fetch-products')
+        axios.get('http://3.87.22.103:2024/User-fetch-products')
             .then(response => {
                 this.products = [...response.data.products]
                 console.log(this.products)
@@ -24,7 +24,7 @@ class ProductGrid extends Component {
             })
     }
     FetchProducts = () => {
-        axios.get('http://localhost:2024/User-fetch-products')
+        axios.get('http://3.87.22.103:2024/User-fetch-products')
             .then(response => {
                 this.products = [...response.data.products]
                 console.log(this.products)

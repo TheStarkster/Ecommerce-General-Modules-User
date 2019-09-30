@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const dbUri = require('./private/keys').MongoUri;
+// const dbUri = require('./private/keys').MongoUri;
 var MongoClient = require('mongoose');
 
 const app = express();
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-MongoClient.connect(dbUri, { useNewUrlParser: true })
+MongoClient.connect('mongodb+srv://sGurkaran:qmxWco8121TB2wS0@gurkaranmaincluster-auih8.mongodb.net/egm?retryWrites=true&w=majority', { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
