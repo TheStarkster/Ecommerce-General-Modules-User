@@ -107,7 +107,7 @@ class ProductsCard extends Component {
                     <Card.Title className="ProductBrief">{this.props.disc}</Card.Title>
                     <Card.Title>
                         <div className="ProductPrice">
-                            Price <Badge variant="success">Rs. {this.props.price}</Badge>
+                            Rs. {this.props.price}<Badge variant="success">In Stock</Badge>
                         </div>
                     </Card.Title>
                 </Card.Body>

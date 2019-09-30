@@ -2,7 +2,9 @@
     border: none !important;
     cursor: pointer;
 }
-
+.ProductPrice > span{
+    margin-left: 12px !important;
+}
 .ProductCardBody {
     padding: 0px !important;
 }
