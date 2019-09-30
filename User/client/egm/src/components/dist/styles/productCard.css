@@ -4,6 +4,11 @@
 }
 .ProductPrice > span{
     margin-left: 12px !important;
+    color: white !important;
+}
+.ProductPrice{
+    color: black;
+    font-weight: bolder;
 }
 .ProductCardBody {
     padding: 0px !important;
