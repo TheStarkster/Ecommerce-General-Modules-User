@@ -13,30 +13,30 @@ class ProductsCard extends Component {
                 var win = $(this)
                 if (win.width() <= 425 && win.width() >= 300) {
                     $('.ProductImage').css({
-                        'height':'120px',
-                        'padding':'4px',
-                        'font-size':'12px'
+                        'height': '120px',
+                        'padding': '4px',
+                        'font-size': '12px'
                     })
                 }
                 if (win.width() >= 300) {
                     $('.ProductImage').css({
-                        'height':'160px',
-                        'padding':'4px',
-                        'font-size':'12px'
+                        'height': '160px',
+                        'padding': '4px',
+                        'font-size': '12px'
                     })
                 }
                 if (win.width() >= 400) {
                     $('.ProductImage').css({
-                        'height':'190px',
-                        'padding':'12px',
-                        'font-size':'16px'
+                        'height': '190px',
+                        'padding': '12px',
+                        'font-size': '16px'
                     })
                 }
                 if (win.width() >= 450) {
                     $('.ProductImage').css({
-                        'height':'230px',
-                        'padding':'16px',
-                        'font-size':'18px'
+                        'height': '230px',
+                        'padding': '16px',
+                        'font-size': '18px'
                     })
                 }
                 if (win.width() >= 510) {
@@ -44,20 +44,60 @@ class ProductsCard extends Component {
                     $('.ProductCard').addClass('col-4')
 
                     $('.ProductImage').css({
-                        'height':'160px',
-                        'padding':'4px',
-                        'font-size':'12px'
+                        'height': '160px',
+                        'padding': '4px',
+                        'font-size': '12px'
                     })
                 }
                 if (win.width() >= 600) {
 
                     $('.ProductImage').css({
-                        'height':'190px',
-                        'padding':'4px',
-                        'font-size':'12px'
+                        'height': '190px',
+                        'padding': '12px',
+                        'font-size': '12px'
                     })
                 }
-               
+                if (win.width() >= 690) {
+                    $('.ProductCard').removeClass('col-4')
+                    $('.ProductCard').addClass('col-3')
+
+                    $('.ProductImage').css({
+                        'height': '160px',
+                        'padding': '4px',
+                        'font-size': '12px'
+                    })
+                }
+                if (win.width() >= 810) {
+                    $('.ProductCard').removeClass('col-4')
+                    $('.ProductCard').addClass('col-3')
+
+                    $('.ProductImage').css({
+                        'height': '190px',
+                        'padding': '8px',
+                        'font-size': '12px'
+                    })
+                }
+                if (win.width() >= 900) {
+                    $('.ProductCard').removeClass('col-4')
+                    $('.ProductCard').addClass('col-3')
+
+                    $('.ProductImage').css({
+                        'height': '220px',
+                        'padding': '12px',
+                        'font-size': '16px'
+                    })
+                }
+                if (win.width() >= 1100) {
+                    $('.ProductCard').removeClass('col-3')
+                    $('.ProductCard').addClass('col-2')
+
+                    $('.ProductImage').css({
+                        'height': '220px',
+                        'padding': '12px',
+                        'font-size': '16px'
+                    })
+                }
+
                 // if (win.width() <= 590) {
                 //     // alert(win.width())
                 //     $('.ProductImage').css('height', '190px')
