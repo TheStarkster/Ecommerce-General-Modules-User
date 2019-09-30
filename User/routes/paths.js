@@ -12,4 +12,5 @@ router.post('/signin',(req,res) => register.SignInHandler(req,res));
 router.get('/User-fetch-products',(req,res) => products.RenderAllProducts(req,res));
 router.get('/find-product/:query',(req,res) => products.SearchProducts(req,res));
 
+// Payments Paths...
 module.exports = router;

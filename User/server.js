@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-MongoClient.connect("mongodb://localhost:27017/egm", { useNewUrlParser: true })
+MongoClient.connect(dbUri, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
