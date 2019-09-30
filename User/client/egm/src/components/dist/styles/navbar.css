@@ -57,7 +57,8 @@
     display: none;
     z-index: 99999;
     position: absolute;
-    right: 38px;
+    right: 0px;
+    margin-right:8px;
     border-radius: 100px;
     background-color: #3c447c;
     transition: 0.2s;
