@@ -63,7 +63,7 @@ class CustomNav extends Component {
                         </button>
                         <div>
                             <ul>
-                                <li className="BrandName">Dental Stall</li>
+                                <li className="BrandName">DentalStall</li>
                                 <li>Products</li>
                                 <li>Catagory</li>
                                 <li>Deals</li>

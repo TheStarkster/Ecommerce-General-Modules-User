@@ -1,3 +1,7 @@
+@font-face{
+    font-family: 'Quicksand-Regular';
+    src: url('../../assets/fonts/Quicksand-Regular.otf')
+}
 .Navbar {
     background-image: url(../../assets/images/navbg.jpg);
     overflow: hidden;
@@ -19,10 +23,12 @@
 #root>div>div:nth-child(1)>div>div>div>ul {
     list-style: none;
     margin: 0 !important;
+    padding: 0;    
 }
 
 #root>div>div:nth-child(1)>div>div>div>ul>li {
     color: rgb(202, 202, 202);
+    font-family: 'Quicksand-Regular';
     display: inline-block;
     padding: 12px;
     cursor: pointer;
@@ -62,6 +68,7 @@
 }
 
 .BrandName {
+    font-family: 'Aquatico-Regular';
     color: white !important;
     font-weight: 400;
     font-size: 24px !important;
