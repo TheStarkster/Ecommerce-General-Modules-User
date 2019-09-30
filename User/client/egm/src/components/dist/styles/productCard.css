@@ -4,9 +4,11 @@
 }
 
 .ProductCardBody {
-    padding: 16px !important;
+    padding: 0px !important;
 }
-
+.ProductPrice{
+    font-size: 14px;
+}
 .ImageOverlay {
     position: absolute;
     top: 0;
@@ -27,14 +29,14 @@
 .ProductName {
     color: rgb(0, 0, 0);
     font-weight: 600;
-    font-size: 21px;
+    font-size: 16px;
 }
 
 .ProductOption {
     background-color: #ffca07d9;
     border-radius: 100px;
     margin: 5px;
-    padding: 10px;
+    padding: 8px;
     transition: 0.2s;
     transform: scale(0.4)
 }
@@ -76,13 +78,13 @@
 } */
 
 .ProductImage {
-    padding: 18px;
+    padding: 12px;
 }
 
 .ProductBrief {
     color: rgb(116, 116, 116);
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .CardOverlay {
@@ -91,20 +93,4 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.692);
     z-index: 99999;
-}
-
-.BlurInProductImage {
-    filter: blur(4px);
-}
-
-.BlurInProductBrief {
-    filter: blur(4px);
-}
-
-.BlurInProductName {
-    filter: blur(4px);
-}
-
-.BlurInProductPrice {
-    filter: blur(4px);
 }

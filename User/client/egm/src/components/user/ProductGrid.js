@@ -46,15 +46,13 @@ class ProductGrid extends Component {
         return CardArray
     }
     render() {
-        if(this.state.hasProduct){
+        if (this.state.hasProduct) {
             return (
                 <div className="container-fluid">
-                    <div className="row my-4">
-                        <div className="col-lg-12">
-                            <div className="d-flex flex-wrap justify-content-around">
-                                {this.RenderProducts()}
-                            </div>
-                        </div>
+                    <div className="row">
+                        {/* <div className="d-flex flex-wrap justify-content-around"> */}
+                            {this.RenderProducts()}
+                        {/* </div> */}
                     </div>
                 </div>
             )
@@ -64,7 +62,7 @@ class ProductGrid extends Component {
                 <div className="row my-4">
                     <div className="col-lg-12">
                         <div className="d-flex flex-wrap justify-content-around">
-                        <Card style={{ width: '18rem' }} className="ProductCard">
+                            <Card style={{ width: '18rem' }} className="ProductCard">
                                 <Card.Body className="ProductCardBody">
                                     <div className="box shine"></div>
                                     <Card.Title className="ProductName">

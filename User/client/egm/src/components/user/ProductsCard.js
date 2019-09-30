@@ -8,6 +8,61 @@ class ProductsCard extends Component {
         super(props)
         this.componentDidMount = () => {
             $('.ProductOptionContainer').css('opacity', '0')
+            $(window).trigger('load')
+            $(window).on('load', function () {
+                var win = $(this)
+                if (win.width() <= 425 && win.width() >= 300) {
+                    $('.ProductImage').css({
+                        'height':'120px',
+                        'padding':'4px',
+                        'font-size':'12px'
+                    })
+                }
+                if (win.width() >= 300) {
+                    $('.ProductImage').css({
+                        'height':'160px',
+                        'padding':'4px',
+                        'font-size':'12px'
+                    })
+                }
+                if (win.width() >= 400) {
+                    $('.ProductImage').css({
+                        'height':'190px',
+                        'padding':'12px',
+                        'font-size':'16px'
+                    })
+                }
+                if (win.width() >= 450) {
+                    $('.ProductImage').css({
+                        'height':'230px',
+                        'padding':'16px',
+                        'font-size':'18px'
+                    })
+                }
+                if (win.width() >= 510) {
+                    $('.ProductCard').removeClass('col-6')
+                    $('.ProductCard').addClass('col-4')
+
+                    $('.ProductImage').css({
+                        'height':'160px',
+                        'padding':'4px',
+                        'font-size':'12px'
+                    })
+                }
+                if (win.width() >= 600) {
+
+                    $('.ProductImage').css({
+                        'height':'190px',
+                        'padding':'4px',
+                        'font-size':'12px'
+                    })
+                }
+               
+                // if (win.width() <= 590) {
+                //     // alert(win.width())
+                //     $('.ProductImage').css('height', '190px')
+                // }
+            })
         }
     }
     ShowProductOption = (id) => {
@@ -21,7 +76,7 @@ class ProductsCard extends Component {
 
     render() {
         return (
-            <Card style={{ width: '18rem' }} className="ProductCard" onClick={() => this.props.history.push('/product')} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
+            <Card style={{ width: '18rem' }} className="ProductCard col-6" onClick={() => this.props.history.push('/product')} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
                 <Card.Body className="ProductCardBody">
                     <div className="ProductImageContainer" id="ProductImageContainer">
                         <div className="ProductOptionContainer d-flex justify-content-center" id={"ProductOptionContainer" + this.props.id} >
