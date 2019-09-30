@@ -68,7 +68,12 @@ class LoginPanel extends Component {
             <div className="bg">
                 <form onSubmit={this.SubmitHandler} method="POST">
                     <center>
-                        <h2 className="Panel-BrandName">DentalStall</h2>
+
+                        {this.state.ShowSocialPanel ?
+                            <h2 className="Panel-BrandName">DentalStall</h2>
+                            :
+                            null
+                        }
                         <Card style={{ width: '20rem' }} className="PanelCard">
                             <Card.Body>
                                 <Card.Title>Enter Your Credentials</Card.Title>
