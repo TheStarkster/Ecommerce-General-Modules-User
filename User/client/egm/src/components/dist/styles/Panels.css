@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: 'Quicksand-Regular';
+    src: url('../../assets/fonts/Quicksand-Regular.otf')
+}
+
+@font-face {
     font-family: 'Raleway-Medium';
     src: url(../../assets/fonts/Raleway-Medium.ttf);
 }
@@ -11,6 +16,12 @@
 @font-face {
     font-family: 'Allagia-Demo';
     src: url(../../assets/fonts/Allagia-Demo.ttf);
+}
+
+.Panel-BrandName {
+    font-family: 'Quicksand-Regular';
+    font-size: 3rem;
+    padding:24px;
 }
 
 .PanelCard {
@@ -35,8 +46,9 @@
 .card-title {
     margin-bottom: 8px !important;
     font-family: 'Raleway-Medium';
-    font-size: 22px;
-    color: rgb(77, 77, 77);
+    font-size: 18px;
+    color: rgb(161, 161, 161);
+    font-weight: 200 !important;
 }
 
 .UnderTitle {
@@ -57,8 +69,8 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     background-image: url(../../assets/images/bg.jpg);
     background-position: left bottom;
     background-size: 980px 750px;
@@ -118,14 +130,17 @@
         background-color: transparent;
     }
 }
-.fa-facebook-f,.fa-google{
-    padding-right:12px;
+
+.fa-facebook-f, .fa-google {
+    padding-right: 12px;
 }
+
 /* .fa-google{
     padding-right: 25px;
 } */
-.FbBtn{
-    border:none !important;
+
+.FbBtn {
+    border: none !important;
     background-color: #3b5998;
     padding: 8px;
     border-radius: 100px !important;
@@ -133,7 +148,8 @@
     font-size: 12px;
     font-weight: 400;
 }
-.GmailBtn{
+
+.GmailBtn {
     border: none !important;
     background-color: #D44638;
     padding: 8px;
@@ -142,15 +158,18 @@
     font-size: 12px;
     font-weight: 400;
 }
-.FbBtn:hover{
+
+.FbBtn:hover {
     background-color: #6079af;
 }
-.GmailBtn:hover{
+
+.GmailBtn:hover {
     background-color: rgb(218, 110, 100);
 }
-.SocailRegisterPanel{
+
+.SocailRegisterPanel {
     background-color: transparent;
-    border :none !important;
+    border: none !important;
     outline: none !important;
     font-family: 'Raleway-Light';
     position: fixed;

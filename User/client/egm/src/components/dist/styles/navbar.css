@@ -1,7 +1,4 @@
-@font-face{
-    font-family: 'Quicksand-Regular';
-    src: url('../../assets/fonts/Quicksand-Regular.otf')
-}
+
 .Navbar {
     background-image: url(../../assets/images/navbg.jpg);
     overflow: hidden;

@@ -2,11 +2,41 @@ import React, { Component } from 'react'
 import { Card, Button } from 'react-bootstrap';
 import './dist/styles/Panels.css'
 import axios from 'axios'
+import $ from 'jquery'
 
 class RegsiterPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', email: '', pass: '' }
+        this.state = {
+            name: '',
+            email: '',
+            pass: '',
+            ShowSocialPanel: true
+        }
+        this.ChangeSocialPanelState = (e) => {
+            if (e === "show") {
+                this.setState({
+                    ShowSocialPanel: true
+                })
+            }
+            if (e === "hide") {
+                this.setState({
+                    ShowSocialPanel: false
+                })
+            }
+        }
+        this.componentDidMount = () => {
+            $(window).trigger('load')
+            var that = this
+            $(window).on('load resize', function () {
+                var win = $(this)
+                if (win.height() >= 553) {
+                    that.ChangeSocialPanelState("show")
+                } else {
+                    that.ChangeSocialPanelState("hide")
+                }
+            })
+        }
     }
     SubmitHandler = (event) => {
         event.preventDefault();
@@ -21,7 +51,6 @@ class RegsiterPanel extends Component {
                         pathname: '/login',
                         state: { message: "Registered Successfully!" }
                     });
-                    console.log("Reached To 200")
                     // return(
                     //     <Redirect to="/LoginPanel"></Redirect>
                     // )   
@@ -43,6 +72,7 @@ class RegsiterPanel extends Component {
             <div className="bg">
                 <form onSubmit={this.SubmitHandler} method="POST">
                     <center>
+                        <h2 className="Panel-BrandName">DentalStall</h2>
                         <Card style={{ width: '20rem' }} className="PanelCard">
                             <Card.Body>
                                 <Card.Title>Enter Your Details</Card.Title>
@@ -56,12 +86,16 @@ class RegsiterPanel extends Component {
                                 <Button type="button" variant="outline-secondary" className="NextPanel Panelbutton" onClick={() => { this.props.history.push('/login') }}>Sign In</Button>
                             </Card.Body>
                         </Card>
-                        <Card style={{ width: '18rem' }} className="SocailRegisterPanel">
-                            <Card.Body>
-                                <Button variant="secondary" className="FbBtn" type="submit"><i className="fab fa-facebook-f fa-lg"></i>Sign-Up with Facebook</Button>
-                                <Button type="button" variant="secondary" className="GmailBtn"><i className="fab fa-google fa-lg"></i>Sign-Up with Gmail</Button>
-                            </Card.Body>
-                        </Card>
+                        {this.state.ShowSocialPanel ?
+                            <Card style={{ width: '18rem' }} className="SocailRegisterPanel">
+                                <Card.Body>
+                                    <Button variant="secondary" className="FbBtn" type="submit"><i className="fab fa-facebook-f fa-lg"></i>Sign-Up with Facebook</Button>
+                                    <Button type="button" variant="secondary" className="GmailBtn"><i className="fab fa-google fa-lg"></i>Sign-Up with Gmail</Button>
+                                </Card.Body>
+                            </Card>
+                            :
+                            null
+                        }
 
 
                     </center>

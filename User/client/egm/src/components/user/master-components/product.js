@@ -7,7 +7,7 @@ class Product extends Component {
     constructor(props) {
         super(props)
         this.componentDidMount = () => {
-            $(window).trigger('load'); 
+            $(window).trigger('load');
             $(window).on('resize load', function () {
                 var win = $(this); //this = window
                 if (win.width() <= 767.98) {
@@ -25,10 +25,10 @@ class Product extends Component {
                     $('.ProductMainImage').removeClass('col-12')
                     $('.ProductMainDetail').removeClass('col-12')
                 }
-                if(win.width() <= 1016){
+                if (win.width() <= 1016) {
                     $('.desktop-mode').removeClass('col-6')
                     $('.desktop-mode').addClass('col-8')
-                }else{
+                } else {
                     $('.desktop-mode').addClass('col-6')
                     $('.desktop-mode').removeClass('col-8')
                 }
@@ -40,11 +40,11 @@ class Product extends Component {
             <div>
                 <CustomNav />
                 <div className="row ProductRoot">
-                    <div className="col-6 d-flex flex-column align-items-center ProductMainImage"><img src={require('../../../productImages/pro1.jpg')} width="350px" /></div>
+                    <div className="col-6 d-flex flex-column align-items-center ProductMainImage"><img src={require('../../../productImages/pro1.jpg')} alt="Product" width="350px" /></div>
                     <div className="col-6 ProductMainDetail">
-                        <div class="row">
-                            <div class="col">
-                                <h1 class="ProductMainName">Product Name</h1>
+                        <div className="row">
+                            <div className="col">
+                                <h1 className="ProductMainName">Product Name</h1>
                                 <hr />
                             </div>
                         </div>
@@ -66,22 +66,22 @@ class Product extends Component {
                         <div className="row tablet-mode-row">
                             <div className="col-12 tablet-mode d-flex flex-column align-items-center">
                                 {/* <div className="col-12"> */}
-                                    <button className="ProductMainOptionAddToCart option-img"><img
-                                        src={require('../../assets/icons/icons8-buy-24.png')}
-                                        alt="Product"
-                                    />Add to Cart</button>
+                                <button className="ProductMainOptionBuy option-img"><img
+                                    src={require('../../assets/icons/icons8-rupee-24.png')}
+                                    alt="Product"
+                                />Buy Now</button>
                                 {/* </div> */}
                                 {/* <div className="col-12"> */}
-                                    <button className="ProductMainOptionWishList option-img"><img
-                                        src={require('../../assets/icons/icons8-love-24.png')}
-                                        alt="Product"
-                                    />Add To Wishlist</button>
+                                <button className="ProductMainOptionAddToCart option-img"><img
+                                    src={require('../../assets/icons/icons8-buy-24.png')}
+                                    alt="Product"
+                                />Add to Cart</button>
                                 {/* </div> */}
                                 {/* <div className="col-12"> */}
-                                    <button className="ProductMainOptionBuy option-img"><img
-                                        src={require('../../assets/icons/icons8-rupee-24.png')}
-                                        alt="Product"
-                                    />Buy Now</button>
+                                <button className="ProductMainOptionWishList option-img"><img
+                                    src={require('../../assets/icons/icons8-love-24.png')}
+                                    alt="Product"
+                                />Add To Wishlist</button>
                                 {/* </div> */}
                             </div>
                         </div>
