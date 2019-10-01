@@ -13,24 +13,38 @@
         display: none !important;
     }
 }
-.desktop-mode-row{
+
+/* .ProductMainRoot{
+    position: relative;
+}
+.desktop-mode{
+    position: absolute;
+    top:0;
+} */
+
+.tablet-mode-row {
     margin: 0 !important;
 }
-.tablet-mode-row{
-    margin: 0 !important;
-}
-.ProductMainImage{
+
+.ProductMainImage {
     justify-content: center;
 }
-@media(max-width:768px) {
-    .desktop-mode {
-        display: none !important;
+.OperationPanel-col {
+    margin-top: 50px;
+}
+.OperationPanel-col>button:hover {
+    box-shadow: 0 0 20px rgba(77, 77, 77, 0.3);
+}
+.OperationPanel-col>button {
+    transition: 0.3s;
+}
+@media(max-width:1046px) {
+    .OperationPanel-col>button {
+        width: 80% !important;
     }
-    .ProductMainOptionAddToCart, .ProductMainOptionWishList, .ProductMainOptionBuy{
-        width: 100% !important;
-    }
-    .ProductMainImage > img{
-        width:300px !important;
+    
+    .ProductMainImage>img {
+        width: 300px !important;
     }
 }
 
@@ -48,7 +62,43 @@
 .ProductMainFeature {
     margin-top: 28px;
 }
-
+.Send-Details-Btn{
+    background-color: #ffab00;
+    border: none;
+}
+.Genuinecy{
+    color: #00cc60;
+    font-weight: bolder;
+}
+.fa-check{
+    color: #00cc60;
+    padding-right: 8px;
+}
+.fa-share-alt{
+    /* z-index: 999999; */
+    color: #565656;
+    cursor: pointer;
+    font-size: 30px;
+    padding:20px;
+    border-radius: 100px;
+    position: absolute;
+    right: 0;
+    top:0;
+    margin: 20px;
+    background-color: #c4c4c4;
+    transition: 0.3s;
+}
+.share:hover{
+    box-shadow: 0 0 20px rgba(77, 77, 77, 0.3);
+    transform:scale(1.2);
+    color: #ffffff;
+}
+/* .Send-Details-Btn:focus{
+    background-color: #e09600 !important;
+} */
+.BulkQuoteCard{
+    background-color: #00cc60;
+}
 .ProductMainPrice {
     font-size: 24px;
     margin-top: 8px;
@@ -57,7 +107,7 @@
 }
 
 .ProductMainOptionAddToCart, .ProductMainOptionWishList, .ProductMainOptionBuy {
-    border-radius: 100px;
+    border-radius: 8px;
     border: none;
     outline: none !important;
     padding: 12px;
