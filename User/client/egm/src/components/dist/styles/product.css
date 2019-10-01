@@ -22,6 +22,37 @@
 .OperationPanel-col {
     margin-top: 50px;
 }
+.Return-Policy,.Cash-On-Delivery,.Warranty{
+    padding: 18px;
+    background-color: #007bff47;
+    border-radius: 100px;
+    margin: 12px;
+}
+.Cash-On-Delivery-Container,.Warranty-Container,.Return-Policy-Container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+.Cash-On-Delivery-Container>h6,.Warranty-Container>h6,.Return-Policy-Container>h6{
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(128, 128, 128);
+}
+/* .Return-Policy> img{
+    width:40px;
+} */
+.Not-In-Price{
+    /* font-family: 'Arial'; */
+    color: rgb(112, 112, 112);
+    font-size: 18px;
+    font-weight: lighter;
+    margin-top: 8px;
+    margin-left: 16px;
+}
 .OperationPanel-col>button:hover {
     box-shadow: 0 0 20px rgba(77, 77, 77, 0.3);
 }

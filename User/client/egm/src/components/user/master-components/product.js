@@ -104,6 +104,7 @@ class Product extends Component {
                             <div className="row">
                                 <div className="col">
                                     <h1 className="ProductMainName">{this.props.location.state.ProductName}</h1>
+                                    by <h6 className="By-Company">Company Name</h6>
                                     <hr />
                                 </div>
                             </div>
@@ -113,6 +114,9 @@ class Product extends Component {
                                 </div>
                             </div>
                             <div className="row ProductMainPrice">
+                                <div className="Not-In-Price">
+                                    M.R.P: <s>Rs. 1800</s>
+                                </div>
                                 <div className="col">
                                     Rs. {this.props.location.state.ProductPrice}
                                 </div>
@@ -153,6 +157,28 @@ class Product extends Component {
                                         </div>
                                     </div>
                             }
+                            <div className="row d-flex justify-content-center align-items-center">
+                                {/* <div className="col"> */}
+                                <div className="Return-Policy-Container">
+                                    <div className="Return-Policy">
+                                        <img src={require('../../assets/icons/icons8-assignment-return-48.png')} alt="Return Policy"></img>
+                                    </div>
+                                    <h6>Return Policy</h6>
+                                    </div>
+                                <div className="Cash-On-Delivery-Container">
+                                    <div className="Cash-On-Delivery">
+                                        <img src={require('../../assets/icons/icons8-cash-on-delivery-48.png')} alt="Cash On Delivery"></img>
+                                    </div>
+                                    <h6>Cash On Delivery</h6>
+                                </div>
+                                <div className="Warranty-Container">
+                                    <div className="Warranty">
+                                        <img src={require('../../assets/icons/icons8-shield-48.png')} alt="Warranty"></img>
+                                    </div>
+                                    <h6>Warranty</h6>
+                                </div>
+                                {/* </div> */}
+                            </div>
                             <div className="row">
                                 <div className="col">
                                     <Card border="success" className="ProductMainFeature">
