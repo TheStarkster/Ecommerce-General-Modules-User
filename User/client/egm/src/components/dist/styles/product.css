@@ -19,7 +19,9 @@
 .tablet-mode-row{
     margin: 0 !important;
 }
-
+.ProductMainImage{
+    justify-content: center;
+}
 @media(max-width:768px) {
     .desktop-mode {
         display: none !important;

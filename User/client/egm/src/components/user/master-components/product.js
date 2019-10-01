@@ -7,6 +7,11 @@ class Product extends Component {
     constructor(props) {
         super(props)
         this.componentDidMount = () => {
+            if (this.props.location.state.stock) {
+                $('.ProductMainStockStatus').addClass('badge-success')
+            } else {
+                $('.ProductMainStockStatus').addClass('badge-danger')
+            }
             $(window).trigger('load');
             $(window).on('resize load', function () {
                 var win = $(this); //this = window
@@ -39,32 +44,32 @@ class Product extends Component {
         return (
             <div>
                 <CustomNav />
-                <div className="row ProductRoot">
-                    <div className="col-6 d-flex flex-column align-items-center ProductMainImage"><img src={require('../../../productImages/pro1.jpg')} alt="Product" width="350px" /></div>
+                <div className="row align-items-start ProductRoot">
+                    <div className="col-6 d-flex flex-column align-items-center ProductMainImage"><img src={this.props.location.state.ProductImage} alt="Product" width="350px" /></div>
                     <div className="col-6 ProductMainDetail">
                         <div className="row">
                             <div className="col">
-                                <h1 className="ProductMainName">Product Name</h1>
+                                <h1 className="ProductMainName">{this.props.location.state.ProductName}</h1>
                                 <hr />
                             </div>
                         </div>
                         <div className="row">
                             <div className="col ProductMainBrief">
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                </div>
+                                {this.props.location.state.ProductBrief}
+                            </div>
                         </div>
                         <div className="row ProductMainPrice">
                             <div className="col">
-                                Rs. 1400
-                                </div>
+                                Rs. {this.props.location.state.ProductPrice}
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <span className="badge badge-success ProductMainStockStatus">In Stock</span>
+                                <span className="badge ProductMainStockStatus">{this.props.location.state.stock ? "In Stock" : "Out Of Stock"}</span>
                             </div>
                         </div>
-                        <div className="row tablet-mode-row">
-                            <div className="col-12 tablet-mode d-flex flex-column align-items-center">
+                        <div className="row align-items-start tablet-mode-row">
+                            <div className="col tablet-mode d-flex flex-column align-items-center">
                                 {/* <div className="col-12"> */}
                                 <button className="ProductMainOptionBuy option-img"><img
                                     src={require('../../assets/icons/icons8-rupee-24.png')}
@@ -91,6 +96,36 @@ class Product extends Component {
                                     <Card.Header>Features</Card.Header>
                                     <Card.Body>
                                         <Card.Title>Primary Features</Card.Title>
+                                        <Card.Text>
+                                            Some quick example text to build on the card title and make up the bulk
+                                            of the card's content.
+                                    </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                                <Card border="success" className="ProductMainFeature">
+                                    <Card.Header>Features</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>Key Features</Card.Title>
+                                        <Card.Text>
+                                            Some quick example text to build on the card title and make up the bulk
+                                            of the card's content.
+                                    </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                                <Card border="success" className="ProductMainFeature">
+                                    <Card.Header>Features</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>Key Features</Card.Title>
+                                        <Card.Text>
+                                            Some quick example text to build on the card title and make up the bulk
+                                            of the card's content.
+                                    </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                                <Card border="success" className="ProductMainFeature">
+                                    <Card.Header>Features</Card.Header>
+                                    <Card.Body>
+                                        <Card.Title>Key Features</Card.Title>
                                         <Card.Text>
                                             Some quick example text to build on the card title and make up the bulk
                                             of the card's content.

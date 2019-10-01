@@ -97,11 +97,6 @@ class ProductsCard extends Component {
                         'font-size': '16px'
                     })
                 }
-
-                // if (win.width() <= 590) {
-                //     // alert(win.width())
-                //     $('.ProductImage').css('height', '190px')
-                // }
             })
         }
     }
@@ -116,7 +111,7 @@ class ProductsCard extends Component {
 
     render() {
         return (
-            <Card style={{ width: '18rem' }} className="ProductCard col-6" onClick={() => this.props.history.push('/product')} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
+            <Card style={{ width: '18rem' }} className="ProductCard col-6" onClick={() => this.props.history.push({pathname:'/product',state:{ProductName:this.props.name,ProductBrief:this.props.disc,ProductPrice:this.props.price,stock:true,ProductImage:this.props.image}})} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
                 <Card.Body className="ProductCardBody">
                     <div className="ProductImageContainer" id="ProductImageContainer">
                         <div className="ProductOptionContainer d-flex justify-content-center" id={"ProductOptionContainer" + this.props.id} >

@@ -17,7 +17,6 @@ class ProductGrid extends Component {
         axios.get('http://3.87.22.103:2024/User-fetch-products')
             .then(response => {
                 this.products = [...response.data.products]
-                console.log(this.products)
                 this.setState({
                     hasProduct: true
                 })
@@ -27,7 +26,6 @@ class ProductGrid extends Component {
         axios.get('http://3.87.22.103:2024/User-fetch-products')
             .then(response => {
                 this.products = [...response.data.products]
-                console.log(this.products)
             })
     }
     RenderProducts() {
