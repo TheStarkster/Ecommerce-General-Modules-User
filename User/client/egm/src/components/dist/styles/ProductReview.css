@@ -1,0 +1,41 @@
+.Product-Review-Card-Body{
+    padding-left: 58px;
+    padding-right: 38px;
+}
+.User-Dp{
+    width:60px;
+    height: 60px;
+    background-color: rgb(38, 136, 136);
+    border-radius: 100px;
+    margin-right: 8px;
+}
+.User{
+    display: flex;
+    align-items: center;
+}
+.User>h6{
+    font-size: 18px;
+    padding: 8px;
+    padding-top: 20px;
+    color: rgb(97, 97, 97);
+    font-family: 'Quicksand-Regular';
+}
+.Product-Review-Hr{
+    height: 1px;
+    width: 80%;
+    background-color: rgb(206, 206, 206);
+    margin: 12px;
+}
+.Product-Review-Card-Root{
+    transition: 0.3s;
+}
+.Product-Review-Card-Root:hover{
+    border-color: #5da4f0;
+    border-width: 1.5px;
+    box-shadow: 0 0 40px rgba(97, 97, 97,0.2);
+}
+@media(max-width:480px){
+    .User{
+        flex-direction: column;
+    }
+}

@@ -3,13 +3,18 @@ import '../../dist/styles/product.css'
 import { Card, Button } from 'react-bootstrap'
 import CustomNav from './Navbar'
 import $ from 'jquery'
+import ProductReviewPanel from './ProductReview'
+import Footer from './footer'
+import CardCarousel from './CardCarousel'
+
 class Product extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            OperationPanelBelowImage: false
+            OperationPanelBelowImage: false,
+            NumberOfRecommendedCards: 2
         }
-        this.componentDidMount = () => {
+        this.componentWillMount = () => {
             if (this.props.location.state.stock) {
                 $('.ProductMainStockStatus').addClass('badge-success')
             } else {
@@ -34,6 +39,9 @@ class Product extends Component {
                 if (win.width() >= 767.98) {
                     $('.ProductMainImage').addClass('col-6')
                     $('.ProductMainDetail').addClass('col-6')
+
+                    $('.BulkQuoteCard-col').removeClass('col-12')
+                    $('.BulkQuoteCard-col').addClass('col-8')
 
                     $('.ProductMainImage').removeClass('col-12')
                     $('.ProductMainDetail').removeClass('col-12')
@@ -85,7 +93,7 @@ class Product extends Component {
                                             />Buy Now</button>
                                         </div>
                                         <div className="col-12 d-flex justify-content-center align-items-center flex-column">
-                                            <div className="col-6 d-flex justify-content-center align-items-center flex-column">
+                                            <div className="col-12 BulkQuoteCard-col d-flex justify-content-center align-items-center flex-column">
                                                 <Card text="white" className="ProductMainFeature BulkQuoteCard">
                                                     <Card.Header>Request Bulk Order</Card.Header>
                                                     <Card.Body>
@@ -164,7 +172,7 @@ class Product extends Component {
                                         <img src={require('../../assets/icons/icons8-assignment-return-48.png')} alt="Return Policy"></img>
                                     </div>
                                     <h6>Return Policy</h6>
-                                    </div>
+                                </div>
                                 <div className="Cash-On-Delivery-Container">
                                     <div className="Cash-On-Delivery">
                                         <img src={require('../../assets/icons/icons8-cash-on-delivery-48.png')} alt="Cash On Delivery"></img>
@@ -189,7 +197,7 @@ class Product extends Component {
                                                 <h6 className="Genuinecy"><i class="fa fa-check" aria-hidden="true"></i>100% Genuine Product</h6>
                                                 Some quick example text to build on the card title and make up the bulk
                                                 of the card's content.
-                                    </Card.Text>
+                                            </Card.Text>
                                         </Card.Body>
                                     </Card>
                                 </div>
@@ -207,11 +215,19 @@ class Product extends Component {
                                         </Card.Body>
                                     </Card>
                                 </div>
-
                             </div>
+                        </div>
+                        <div className="col-12 recommended-product-container">
+                            <CardCarousel NumberOfCard={this.state.NumberOfRecommendedCards}></CardCarousel>
+                        </div>
+                        <div className="col-12 recommended-product-container">
+                            <ProductReviewPanel></ProductReviewPanel>
+                            <ProductReviewPanel></ProductReviewPanel>
+                            <ProductReviewPanel></ProductReviewPanel>
                         </div>
                     </div>
                 </div>
+                <Footer></Footer>
             </div>
         )
     }

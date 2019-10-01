@@ -1,0 +1,57 @@
+.Footer-Root{
+    position: relative;
+    z-index: 99999999;
+    bottom: 0;
+    height: 350px;
+    width:100%;
+    background-color: #1d2124;
+}
+.Footer-BackTo-Top{
+    position: absolute;
+    top:0;
+    height: 14%;
+    width: 100%;
+    background-color: rgb(66, 66, 66);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Footer-BackTo-Top>h5{
+    color: white;
+}
+.Footer-Root > .col-12 > .row > .col-6{
+    position: relative;
+    padding: 18px;
+    padding-bottom: 4px;
+    color: rgb(194, 194, 194);
+}
+.Footer-Root > .col-12 > .row > div > h6 > .fab{
+    padding-right: 8px;
+}
+.Footer-Root > .col-12 > .row > div > h5 {
+   font-weight: lighter;
+   font-size: 14px;
+}
+
+.Footer-Root > .col-12{
+    position: relative;
+    top:54px;
+}
+.Footer-Office-Address{
+    color: white;
+}
+.Footer-BrandName-Dental{
+    font-family: 'Ainslie';
+    font-size: 2rem;
+    font-style: italic;
+    color:#4b6679;
+    padding-bottom: 8px;
+}
+.Footer-BrandName-Stall{
+    font-family: 'Ainslie';
+    font-size: 2rem;
+    font-style: italic;
+    color:#40d965;
+    padding-bottom: 8px;
+
+}

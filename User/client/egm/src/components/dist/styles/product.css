@@ -22,6 +22,13 @@
 .OperationPanel-col {
     margin-top: 50px;
 }
+.recommended-product-container{
+    margin-top:38px;
+    margin-bottom:38px;
+}
+.recommended-product-container>div{
+    padding: 10px !important;
+}
 .Return-Policy,.Cash-On-Delivery,.Warranty{
     padding: 16px;
     background-color: #007bff47;
@@ -77,6 +84,7 @@
 
 .ProductMainStockStatus {
     padding: 8px;
+    color: white !important;
     font-size: 16px;
     margin-top: 8px;
     background-color: #3fc35d
