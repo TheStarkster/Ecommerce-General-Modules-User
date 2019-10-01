@@ -8,15 +8,6 @@
     margin: 0 !important;
 }
 
-@media(min-width:768px) {
-    .tablet-mode {
-        display: none !important;
-    }
-    .fa-share-alt{
-        margin: 10px;
-    }
-}
-
 /* .ProductMainRoot{
     position: relative;
 }
@@ -24,10 +15,6 @@
     position: absolute;
     top:0;
 } */
-
-.tablet-mode-row {
-    margin: 0 !important;
-}
 
 .ProductMainImage {
     justify-content: center;
@@ -48,6 +35,9 @@
     
     .ProductMainImage>img {
         width: 300px !important;
+    }
+    .fa-share-alt{
+        margin: 10px !important;
     }
 }
 
