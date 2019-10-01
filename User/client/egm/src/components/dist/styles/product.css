@@ -23,10 +23,13 @@
     margin-top: 50px;
 }
 .Return-Policy,.Cash-On-Delivery,.Warranty{
-    padding: 18px;
+    padding: 16px;
     background-color: #007bff47;
     border-radius: 100px;
     margin: 12px;
+}
+.Return-Policy>img,.Cash-On-Delivery>img,.Warranty>img{
+    width:30px;
 }
 .Cash-On-Delivery-Container,.Warranty-Container,.Return-Policy-Container{
     position: relative;
