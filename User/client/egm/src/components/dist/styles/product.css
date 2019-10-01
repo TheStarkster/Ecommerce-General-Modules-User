@@ -12,6 +12,9 @@
     .tablet-mode {
         display: none !important;
     }
+    .fa-share-alt{
+        margin: 10px;
+    }
 }
 
 /* .ProductMainRoot{
@@ -84,7 +87,7 @@
     position: absolute;
     right: 0;
     top:0;
-    margin: 20px;
+    margin: 28px;
     background-color: #c4c4c4;
     transition: 0.3s;
 }
