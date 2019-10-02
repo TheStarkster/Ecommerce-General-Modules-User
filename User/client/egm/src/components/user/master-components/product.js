@@ -220,10 +220,12 @@ class Product extends Component {
                         <div className="col-12 recommended-product-container">
                             <CardCarousel NumberOfCard={this.state.NumberOfRecommendedCards}></CardCarousel>
                         </div>
-                        <div className="col-12 recommended-product-container">
-                            <ProductReviewPanel></ProductReviewPanel>
-                            <ProductReviewPanel></ProductReviewPanel>
-                            <ProductReviewPanel></ProductReviewPanel>
+                        <div className="col-12">
+                            <div className="row">
+                                <ProductReviewPanel></ProductReviewPanel>
+                                <ProductReviewPanel></ProductReviewPanel>
+                                <ProductReviewPanel></ProductReviewPanel>
+                            </div>
                         </div>
                     </div>
                 </div>
