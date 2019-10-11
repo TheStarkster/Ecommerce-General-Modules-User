@@ -55,8 +55,8 @@ class ProfileAccount extends Component {
                 menuIcon: "menu"
             }, () => {
                 $('.menu-items').css({
-                    "transition":"0s",
-                    'opacity':'0'
+                    "transition": "0s",
+                    'opacity': '0'
                 })
             })
         } else {
@@ -66,8 +66,8 @@ class ProfileAccount extends Component {
             }, () => {
                 setTimeout(() => {
                     $('.menu-items').css({
-                        "transition":"0.4s",
-                        'opacity':'1'
+                        "transition": "0.4s",
+                        'opacity': '1'
                     })
                 }, 500)
             })
@@ -202,18 +202,19 @@ class ProfileAccount extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="Other-Shipping-Details-Root">
+                </div>
+                <div className="card-containers">
+                    <div className="Acc-Details-Root">
                         <div className="acc-detail-container-1">
                             <h6>Other Shipping Addresses</h6>
                         </div>
-                        <div className="custom-col">
+                        <div className="acc-detail-container-2">
                             <div className="Personal-Detail-1">
-                                <h8>No Addresses Found!</h8>
+                                <h8>Default</h8>
                             </div>
-                            <div className="custom-col-full">
-                                <div className="jumbotron">
-                                    <h6>Add New Address +</h6>
-                                </div>
+                            <div className="Personal-Detail-2">
+                                <h8>{this.state.userdata.shipping_add.default.name+"'s"}</h8>
+                                <h8 className="AddNewAddress">Add New +</h8>
                             </div>
                         </div>
                     </div>

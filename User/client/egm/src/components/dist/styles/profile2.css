@@ -170,6 +170,13 @@
     overflow: scroll;
 }
 
+.AddNewAddress {
+    padding: 8px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 12px;
+    text-align: center;
+}
+
 .custom-flex-row::-webkit-scrollbar {
     width: 8px !important;
 }
@@ -422,38 +429,39 @@
     transition: 0.4s;
 }
 
-@media(max-width:714px) {
+@media(max-width:847px) {
     .profile-detail-root {
         display: none;
     }
     .profile-detail-root-mobile {
         display: flex !important;
     }
-}
-
-@media(max-width:568px) {
     .sidebar-nav-root {
         display: none;
     }
 }
-@media(max-width:487px){
-    .Acc-Details-Root{
+
+@media(max-width:487px) {
+    .Acc-Details-Root {
         width: 350px;
     }
 }
-@media(max-width:375px){
-    .Acc-Details-Root{
+
+@media(max-width:375px) {
+    .Acc-Details-Root {
         width: 300px;
     }
 }
-@media(max-width:320px){
-    .Acc-Details-Root{
+
+@media(max-width:320px) {
+    .Acc-Details-Root {
         width: 250px;
     }
-    .Acc-Details-Root>.acc-detail-container-2>div>h8{
+    .Acc-Details-Root>.acc-detail-container-2>div>h8 {
         font-size: 12px;
     }
 }
+
 .profile-avatar {
     width: 120px;
     height: 120px;
