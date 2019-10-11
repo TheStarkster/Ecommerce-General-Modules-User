@@ -116,7 +116,7 @@ function CustomizedSnackbars() {
       </Button>
             <Snackbar
                 anchorOrigin={{
-                    vertical: 'top',
+                    vertical: 'bottom',
                     horizontal: 'center',
                 }}
                 open={open}
@@ -155,7 +155,7 @@ function WishlistSnackbars() {
       </Button>
             <Snackbar
                 anchorOrigin={{
-                    vertical: 'top',
+                    vertical: 'bottom',
                     horizontal: 'center',
                 }}
                 open={open}
