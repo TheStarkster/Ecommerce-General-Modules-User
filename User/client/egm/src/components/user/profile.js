@@ -9,10 +9,10 @@ import PersonPinCircleTwoToneIcon from '@material-ui/icons/PersonPinCircleTwoTon
 import EmailTwoToneIcon from '@material-ui/icons/EmailTwoTone';
 import PhoneAndroidTwoToneIcon from '@material-ui/icons/PhoneAndroidTwoTone';
 import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedInTwoTone';
-import '../dist/styles/profile2.css'
 import ProfileAccount from '../user/master-components/profile-account'
 import ProfilePayment from '../user/master-components/profile-payments'
 import ProfileOrders from '../user/master-components/profile-orders'
+import '../dist/styles/profile2.css'
 import $ from 'jquery'
 class Profile extends Component {
     constructor(props) {

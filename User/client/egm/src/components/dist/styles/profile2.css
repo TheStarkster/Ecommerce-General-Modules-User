@@ -1,13 +1,34 @@
 .profile-root {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
+    /* top: 0;
+    left: 0; */
+    /* overflow: scroll; */
     display: flex;
     flex-direction: row;
     background-color: #e4e9ff;
     color: rgb(56, 77, 107);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .sidebar-nav-root {
@@ -42,6 +63,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 70px;
     transition: 0.2s;
@@ -140,8 +162,16 @@
 }
 
 .custom-flex-row {
+    position: relative;
     display: flex;
+    flex: 1;
     flex-direction: column;
+    width: inherit;
+    overflow: scroll;
+}
+
+.custom-flex-row::-webkit-scrollbar {
+    width: 8px !important;
 }
 
 .custom-flex-row>h2 {
@@ -156,18 +186,21 @@
     display: flex;
     flex-direction: row;
 }
-.Edit-Personal-Detail{
+
+.Edit-Personal-Detail {
     position: fixed;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #3c53b3;
     padding: 45px;
     border-radius: 12px;
 }
-.Edit-Personal-Detail>.col-12>.row>.col-12>input{
+
+.Edit-Personal-Detail>.col-12>.row>.col-12>input {
     margin-bottom: 12px;
 }
+
 .bread-crumb-root>svg {
     font-size: 18px;
     margin-right: 8px;
@@ -181,25 +214,28 @@
     color: rgba(146, 146, 146, 0.699);
     margin-bottom: 0px !important;
 }
-.row-flex-1{
+
+.row-flex-1 {
     display: flex;
 }
-.row-flex-1>h2{
-    flex:1;
+
+.row-flex-1>h2 {
+    flex: 1;
     margin-bottom: 12px !important;
     margin-left: 25px;
 }
 
-.row-flex-1>svg{
+.row-flex-1>svg {
     font-size: 2.4rem;
     margin-right: 30px !important;
     margin-left: 25px;
     border-radius: 100px;
-    padding:10px;
+    padding: 10px;
     background-color: #77777763;
     color: white;
 }
-.Acc-Details-Root{
+
+.Acc-Details-Root {
     width: 380px;
     border-radius: 12px;
     background-color: rgb(250, 250, 250);
@@ -207,7 +243,8 @@
     box-shadow: 0px 17px 20px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
-.Other-Shipping-Details-Root{
+
+.Other-Shipping-Details-Root {
     display: flex;
     flex-direction: column;
     width: 380px;
@@ -216,29 +253,43 @@
     margin: 18px;
     box-shadow: 0px 17px 20px rgba(0, 0, 0, 0.1);
 }
-.custom-col{
+
+.custom-col {
     font-family: 'Raleway-Light';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:18px;
+    padding: 18px;
     height: 120px;
 }
-.custom-col-full>.jumbotron{
+
+.custom-col-full>.jumbotron {
     padding: 10px !important;
     position: relative;
     bottom: -50px;
 }
-.acc-detail-container-1>h6{
+
+.acc-detail-container-1>h6 {
     font-family: 'Raleway-Light';
 }
-.custom-col-full>.jumbotron>h6{
+
+.custom-col-full>.jumbotron>h6 {
     margin: 0px !important;
 }
+
 .Acc-Details-Root {
     display: flex;
     flex-direction: column;
     font-family: 'Raleway-Light';
+}
+
+.profile-detail-root-mobile {
+    display: none;
+    position: relative;
+    width: inherit;
+    background-color: #273dae;
+    align-items: center;
+    flex-direction: column;
 }
 
 .acc-detail-container-1 {
@@ -253,12 +304,13 @@
     margin-bottom: 0px;
     margin-top: 8px;
 }
+
 .acc-detail-container-1>svg {
-    margin-right:15px;
+    margin-right: 15px;
     color: rgba(0, 0, 0, 0.774);
     font-size: 2.6rem;
     border-radius: 100px;
-    padding:10px;
+    padding: 10px;
     background-color: #21bdcb31;
 }
 
@@ -283,20 +335,135 @@
     flex-direction: column;
     text-align: right;
 }
-.Personal-Detail-3{
+
+.Personal-Detail-3 {
     flex: 1;
     display: flex;
     flex-direction: column;
     text-align: right;
     background-color: black;
 }
-.Personal-Detail-1>h8,.Personal-Detail-2>h8{
+
+.Personal-Detail-1>h8, .Personal-Detail-2>h8 {
     font-size: 14px;
     padding-bottom: 6px;
 }
-.card-containers{
+
+.card-containers {
     display: flex;
 }
-.custom-col-full{
 
+.custom-col-full {}
+
+@media(max-width:1140px) {
+    .card-containers {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.menu-mobile>svg {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border-radius: 100px;
+    font-size: 3rem;
+    padding: 10px;
+    color: white;
+    background-color: #21becb;
+}
+
+.menu-mobile {
+    cursor: pointer;
+}
+
+.menu-main {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 12px;
+    left: 12px;
+    border-radius: 100px;
+    font-size: 3rem;
+    padding: 10px;
+    color: white;
+    background-color: #21becb;
+    transition: 0.2s;
+}
+
+.expand-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    font-size: 3rem;
+    padding: 10px;
+    color: white;
+    background-color: #21becb;
+}
+
+.icon-mobile>svg {
+    font-size: 2rem !important;
+}
+
+.icon-mobile>h6 {
+    font-size: 1rem !important;
+    opacity: 0.8;
+}
+
+.menu-items {
+    padding: 12px;
+    position: relative;
+    top: 60px;
+    display: flex;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+@media(max-width:714px) {
+    .profile-detail-root {
+        display: none;
+    }
+    .profile-detail-root-mobile {
+        display: flex !important;
+    }
+}
+
+@media(max-width:568px) {
+    .sidebar-nav-root {
+        display: none;
+    }
+}
+@media(max-width:487px){
+    .Acc-Details-Root{
+        width: 350px;
+    }
+}
+@media(max-width:375px){
+    .Acc-Details-Root{
+        width: 300px;
+    }
+}
+@media(max-width:320px){
+    .Acc-Details-Root{
+        width: 250px;
+    }
+    .Acc-Details-Root>.acc-detail-container-2>div>h8{
+        font-size: 12px;
+    }
+}
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 12px;
+    background-color: brown;
+    border-radius: 100px;
+}
+
+.profile-name {
+    font-family: 'Raleway-Light';
+    color: white;
+    padding-bottom: 12px;
 }

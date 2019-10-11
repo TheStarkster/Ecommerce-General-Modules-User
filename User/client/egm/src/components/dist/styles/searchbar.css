@@ -1,6 +1,6 @@
 .searchbar-root{
     position: relative;
-    widows: inherit;
+    width: inherit;
 }
 .Searchbar{
     width:100%;
