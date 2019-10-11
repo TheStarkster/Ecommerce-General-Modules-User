@@ -15,8 +15,17 @@
     font-family: 'Raleway-Light';
     padding: 8px;
     font-weight: bold;
+    position: relative;
 }
-
+.user-setting-option{
+    padding: 18px;
+}
+.user-setting-option-edit-btn>button{
+    width: 60%;
+}
+.user-setting-option-root{
+    padding: 12px !important;
+}
 .OrderBtn {
     width: 90%;
     margin: 4px;
@@ -39,9 +48,8 @@
     top: 0;
     width: 100%;
     height: 56%;
-    background-color: rgb(223, 128, 128);
+    background-color: rgb(255, 255, 255);
     z-index: -99999;
-    background-image: url('../../assets/images/profilebg.jpg')
 }
 
 #root>div>div.ProfileRoot>div.container>div>div>div>div {
@@ -56,7 +64,7 @@
 
 #root>div>div.container>div>header {
     box-shadow: 0 0;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     outline: none;
 }
 

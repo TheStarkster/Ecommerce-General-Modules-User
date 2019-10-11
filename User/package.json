@@ -25,6 +25,7 @@
     "flash": "^1.1.0",
     "mongodb": "^3.3.0",
     "mongoose": "^5.6.9",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "razorpay": "^2.0.5"
   }
 }

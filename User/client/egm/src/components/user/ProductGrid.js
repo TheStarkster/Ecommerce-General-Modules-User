@@ -38,6 +38,7 @@ class ProductGrid extends Component {
                 image={this.products[i].image}
                 productID={this.products[i]._id}
                 history={this.props.history}
+                triggercart={this.props.trigger}
                 id={i}
             ></ProductsCard>)
         }
@@ -46,7 +47,7 @@ class ProductGrid extends Component {
     render() {
         if (this.state.hasProduct) {
             return (
-                <div className="container-fluid">
+                <div className="container-fluid product-grid-container">
                     <div className="row">
                         {/* <div className="d-flex flex-wrap justify-content-around"> */}
                             {this.RenderProducts()}

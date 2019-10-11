@@ -1,0 +1,38 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.2s ease-out;
+    z-index: 99999999;
+}
+
+.scrolled {
+    background-color: transparent !important;
+}
+.default-scrolled {
+    background-color: transparent !important;
+}
+
+.navbar-brand {
+    display: flex;
+    padding-left: 15px;
+    font-family: 'Ainslie';
+    font-size: 34px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.navbar-brand>.Dental {
+    color: #4b6679 !important
+}
+
+.navbar-brand>.Stall {
+    color: #40d965 !important
+}
+
+.nav-actions {
+    position: absolute;
+    right: 0;
+    padding-right: 25px;
+}

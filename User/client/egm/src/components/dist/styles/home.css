@@ -1,0 +1,22 @@
+.Alert-Box-Container{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.Added-To-Cart-Alert{
+    background-color: green;
+    border-radius: 18px;
+}
+#show-success{
+    display: none;
+}
+#show-wishlist-alert{
+    display: none;
+}
+.home-root{
+    position: relative;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+}

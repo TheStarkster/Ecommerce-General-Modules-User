@@ -70,7 +70,16 @@ class CustomNav extends Component {
                             </ul>
                             <ul>
                                 <li className="BrandName invisible Hamburger">B</li>
-                                <li className="Other-li" onClick={() => { this.ValidateUserSession() }}>Guest</li>
+                                <li className="Other-li" onClick={() => {
+                                    if (!this.props.userdata) { this.ValidateUserSession() } else {
+                                        this.props.history.push({
+                                            pathname: '/profile',
+                                            state: {
+                                                userdata: this.props.userdata
+                                            }
+                                        })
+                                    }
+                                }}>{this.props.userdata ? this.props.userdata.name : "Guest"}</li>
                                 <li className="Other-li">Cart</li>
                             </ul>
                         </div>

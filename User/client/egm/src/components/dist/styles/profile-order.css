@@ -1,0 +1,16 @@
+.profile-order-root{
+    position: relative;
+    width: 70%;
+    padding: 18px;
+}
+@media(max-width:1024px){
+    .ProfileOrderCard>.card-header{
+        display: none;
+    }
+    
+}
+@media(max-width:786px){
+    /* .card-title{
+        display: none;
+    } */
+}

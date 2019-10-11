@@ -1,3 +1,7 @@
+ .product-grid-container{
+     position: relative;
+     width: inherit;
+ }
  .shine {
      background: #f6f7f8;
      background-image: linear-gradient(to right, #f3f3f3 0%, #e6e6e9 20%, #f6f7f8 40%, #f6f7f8 100%);

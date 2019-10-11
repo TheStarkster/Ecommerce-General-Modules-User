@@ -4,8 +4,7 @@ import '../../dist/styles/searchbar.css'
 class SearchBar extends Component {
     render() {
         return (
-
-            <div className="container">
+            <div className="container searchbar-root">
                 <div className="input-wrapper">
                     <i className="fas fa-search"></i>
                     <input type="text" className="Searchbar" placeholder="What Are You Looking For?"></input>

@@ -12,10 +12,21 @@ import CustomNav from './user/master-components/Navbar'
 import { Card, Button } from 'react-bootstrap'
 
 class Profile extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            userdata: null
+        }
+        this.componentWillMount = () => {
+            this.setState({
+                userdata: this.props.location.state.userdata
+            })
+        }
+    }
     render() {
         return (
             <div>
-                <CustomNav history={this.props.history} loggedIn={false}></CustomNav>
+                <CustomNav history={this.props.history} userdata={this.state.userdata} loggedIn={false}></CustomNav>
                 <div className="ProfileRoot">
                 </div>
                 <div className="UserAvatarCard">
@@ -24,12 +35,12 @@ class Profile extends Component {
                             {/* <img src={require('./assets/images/icons8-male-user-500.png')} ></img> */}
                         </div>
                         <div className="UserName">
-                            <h2>Full Name</h2>
+                            <h2>{this.state.userdata.name}</h2>
                         </div>
                     </center>
                 </div>
                 <div className="container">
-                    <FullWidthTabs></FullWidthTabs>
+                    <FullWidthTabs userdata={this.state.userdata}></FullWidthTabs>
 
                 </div>
             </div>
@@ -77,11 +88,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function FullWidthTabs() {
+function FullWidthTabs(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -112,37 +122,68 @@ function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <div className="UserDetailCard">
-                        <div className="UserDetail">
-                            <div className="UserDetailUsername">
-                                <h5>Username</h5>
-                                <div>
-                                    <h4>This Is User Name</h4><i className="fas fa-edit"></i>
+                    <div className="col-12">
+                        <div className="row">
+                            <div className="col-6">
+                                <div className="row jumbotron user-setting-option-root">
+                                    <div className="col-12 user-setting-option">
+                                        <div className="row">
+                                            <div className="col-8">
+                                                <h6>Username</h6>
+                                                <h5>{props.userdata.name}</h5>
+                                            </div>
+                                            <div className="col-4 user-setting-option-edit-btn">
+                                                <Button>Edit</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 user-setting-option">
+                                        <div className="row">
+                                            <div className="col-8">
+                                                <h6>Email</h6>
+                                                <h5>{props.userdata.email}</h5>
+                                            </div>
+                                            <div className="col-4 user-setting-option-edit-btn">
+                                                <Button>Edit</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 user-setting-option">
+                                        <div className="row">
+                                            <div className="col-8">
+                                                <h6>Password</h6>
+                                                <h5>*********</h5>
+                                            </div>
+                                            <div className="col-4 user-setting-option-edit-btn">
+                                                <Button>Edit</Button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 user-setting-option">
+                                        <div className="row">
+                                            <div className="col-8">
+                                                <h6>Username</h6>
+                                                <h4>Username</h4>
+                                            </div>
+                                            <div className="col-4 user-setting-option-edit-btn">
+                                                <Button>Edit</Button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="UserDetailUsername">
-                                <h5>Password</h5>
-                                <div>
-                                    <h4>This Is User Name</h4><i className="fas fa-edit"></i>
+                            {/* <div className="col-6">
+                                <div className="row jumbotron">
+                                    <div className="col-12">
+                                        <h6>Whishlist</h6>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="UserDetailUsername">
-                                <h5>Email</h5>
-                                <div>
-                                    <h4>This Is User Name</h4><i className="fas fa-edit"></i>
-                                </div>
-                            </div>
-                            <div className="UserDetailUsername">
-                                <h5>Address</h5>
-                                <div>
-                                    <h4>This Is User Name</h4><i className="fas fa-edit"></i>
-                                </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                <Card className="ProfileOrderCard">
+                    <Card className="ProfileOrderCard">
                         <Card.Header>
                             <div className="row">
                                 <div className="col">

@@ -4,6 +4,7 @@ import './dist/styles/Panels.css'
 import $ from 'jquery'
 import axios from 'axios'
 import CustomMessage from './messages'
+import Swal from 'sweetalert2'
 class LoginPanel extends Component {
     constructor(props) {
         super(props);
@@ -40,14 +41,32 @@ class LoginPanel extends Component {
 
     SubmitHandler = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        axios.post("http://localhost:5000/signin", {
+        axios.post("http://localhost:2024/signin", {
             email: this.state.email,
             pass: this.state.pass
         })
             .then(result => {
-                if (result.message === "200: User Authenticated") {
-
+                if (result.data.message === "200: User Authenticated") {
+                    this.props.history.push({
+                        pathname: '/home',
+                        state: {
+                            userdata: result.data
+                        }
+                    })
+                }
+                if (result.data.message === "Incorrect Password!") {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Your Password is Incorrect!',
+                        text: 'Please Try Again',
+                    })
+                }
+                if (result.data.message === "User Not Registered") {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Not Registered!',
+                        text: 'Please Sign Up then Try again',
+                    })
                 }
             });
     }

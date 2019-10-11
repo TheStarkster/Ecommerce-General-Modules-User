@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Card, Badge } from 'react-bootstrap'
 import $ from 'jquery'
 import '../dist/styles/productCard.css'
-
+import axios from 'axios'
 class ProductsCard extends Component {
     constructor(props) {
         super(props)
@@ -108,10 +108,12 @@ class ProductsCard extends Component {
         $('#ProductOptionContainer' + id).css('opacity', '0')
         $('.ProductOption').css('transform', 'scale(0.4)')
     }
+    // SendDetails(){
 
+    // }
     render() {
         return (
-            <Card style={{ width: '18rem' }} className="ProductCard col-6" onClick={() => this.props.history.push({pathname:'/product',state:{ProductName:this.props.name,ProductBrief:this.props.disc,ProductPrice:this.props.price,stock:true,ProductImage:this.props.image}})} id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
+            <Card style={{ width: '18rem' }} className="ProductCard col-6" id={"ProductCardRoot" + this.props.id} onMouseEnter={() => this.ShowProductOption(this.props.id)} onMouseLeave={() => this.HideProductOption(this.props.id)}>
                 <Card.Body className="ProductCardBody">
                     <div className="ProductImageContainer" id="ProductImageContainer">
                         <div className="ProductOptionContainer d-flex justify-content-center" id={"ProductOptionContainer" + this.props.id} >
@@ -119,16 +121,24 @@ class ProductsCard extends Component {
                                 className="ProductOption"
                                 src={require('../assets/icons/icons8-buy-24.png')}
                                 alt="Product"
+                                onClick={() => {
+                                    this.props.triggercart(this.props);
+                                    document.getElementById('show-success').click()
+                                }}
                             />
                             <img
                                 className="ProductOption"
                                 src={require('../assets/icons/icons8-love-24.png')}
                                 alt="Product"
+                                onClick={() => {
+                                    document.getElementById('show-wishlist-alert').click()
+                                }}
                             />
                             <img
                                 className="ProductOption"
                                 src={require('../assets/icons/icons8-rupee-24.png')}
                                 alt="Product"
+                                onClick={() => axios.post('http://localhost:2024/razorpay/create-order')}
                             />
                         </div>
                         <img
@@ -138,10 +148,10 @@ class ProductsCard extends Component {
                             alt="Product"
                         />
                     </div>
-                    <Card.Title className="ProductName">{this.props.name}</Card.Title>
-                    <Card.Title className="ProductBrief">{this.props.disc}</Card.Title>
+                    <Card.Title className="ProductName" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>{this.props.name}</Card.Title>
+                    <Card.Title className="ProductBrief" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>{this.props.disc}</Card.Title>
                     <Card.Title>
-                        <div className="ProductPrice">
+                        <div className="ProductPrice" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>
                             Rs. {this.props.price}<Badge variant="success">In Stock</Badge>
                         </div>
                     </Card.Title>
