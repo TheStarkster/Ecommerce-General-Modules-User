@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import CustomNav from './user/master-components/navbarv2'
 import ReactCarousel from './user/master-components/Carousel'
+import axios from 'axios'
+import CartItemsModal from './user/master-components/cart-items'
 // import Tags from './user/master-components/tags'
 import $ from 'jquery'
 import SearchBar from './user/master-components/searchbar'
+import Footer from './user/master-components/footer'
 import ProductGrid from './user/ProductGrid'
 import '../components/dist/styles/home.css'
 import HeadSection from '../components/user/master-components/head-section'
-
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -121,8 +123,7 @@ function CustomizedSnackbars() {
                 }}
                 open={open}
                 autoHideDuration={2000}
-                onClose={handleClose}
-            >
+                onClose={handleClose}>
                 <MySnackbarContentWrapper
                     onClose={handleClose}
                     variant="success"
@@ -151,8 +152,7 @@ function WishlistSnackbars() {
     return (
         <div>
             <Button variant="outlined" className={classes.margin} onClick={handleClick} id="show-wishlist-alert">
-                Open success snackbar
-      </Button>
+            </Button>
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
@@ -171,35 +171,211 @@ function WishlistSnackbars() {
         </div>
     );
 }
+function AlreadyCartSnackbars() {
+    const classes = useStyles2();
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    return (
+        <div>
+            <Button variant="outlined" className={classes.margin} onClick={handleClick} id="show-already-cart-alert">
+            </Button>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleClose}>
+                <MySnackbarContentWrapper
+                    onClose={handleClose}
+                    variant="warning"
+                    message="Item Already in Cart!"
+                />
+            </Snackbar>
+        </div>
+    );
+}
 
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
             RenderCarousel: false,
-            userData: null,
-            cartitems: []
+            userdata: null,
+            cartitems: [],
+            showAuthPanel: false,
+            cartTotal: 0,
+            showcart:false
         }
+        this.Childref = React.createRef()
         this.addtocart = (item) => {
-            var newitem = this.state.cartitems
-            newitem.push(item)
-            // Array.prototype.push.apply(newitem,item)
-            this.setState({
-                cartitems: newitem
-            })
+            if (this.state.cartitems.some(n => n.name == item.name)) {
+                document.getElementById('show-already-cart-alert').click()
+            } else {
+                var newitem = this.state.cartitems
+                newitem.push({
+                    name: item.name,
+                    disc: item.disc,
+                    price: item.price,
+                    image: item.image,
+                    productID: item.productID
+                })
+                var TempCartAmount = parseFloat(this.state.cartTotal)
+                TempCartAmount += parseFloat(item.price)
+                this.setState({
+                    cartitems: newitem,
+                    cartTotal: TempCartAmount
+                }, () => {
+                    console.log("adding cart itemd user data")
+                    console.log(this.state.userdata)
+                    console.log("adding cart itemd user data")
+                    if (this.state.userdata) {
+                        localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
+                        localStorage.setItem('cart-items-total', this.state.cartTotal)
+                        axios.post('http://localhost:2024/user/add-to-cart', {
+                            id: this.state.userdata._id,
+                            cart: newitem,
+                            cartTotal: TempCartAmount
+                        })
+                            .then(response => {
+                                console.log("response")
+                                console.log(response.data.message)
+                                console.log("response")
+                                if (response.data.message === "Cart-Updated") {
+                                    localStorage.removeItem('cart-items', JSON.stringify(this.state.cartitems))
+                                    localStorage.removeItem('cart-items-total', this.state.cartTotal)
+                                }
+                            })
+                    }
+
+                })
+                document.getElementById('show-success').click()
+            }
             console.log(this.state.cartitems)
         }
         this.addtocart = this.addtocart.bind(this)
+
+        this.checkoutforsingle = (productdata) => {
+            if (this.props.location.state) {
+                this.props.history.push({
+                    pathname: '/checkout',
+                    state: {
+                        productID: productdata.productID,
+                        price: productdata.price,
+                        name: productdata.name,
+                        itempushed: 1,
+                        userdata: this.props.location.state.userdata.data
+                    }
+                })
+            } else {
+                this.Childref.current.ValidateUserSession()
+            }
+        }
+        this.checkoutforsingle = this.checkoutforsingle.bind(this)
         this.ChangeCarouselState = () => {
             this.setState({
                 RenderCarousel: true,
             })
         }
+        this.componentWillUpdate = () => {
+            if (this.props.location.state) {
+
+            }
+        }
+        function containsItem(obj, list) {
+            var i;
+            for (i = 0; i < list.length; i++) {
+                if (list[i].productID === obj.productID) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         this.componentWillMount = () => {
             if (this.props.location.state) {
                 this.setState({
-                    userdata: this.props.location.state.userdata.data
+                    userdata: this.props.location.state.userdata.data,
                 })
+                if (this.props.location.state.userdata.data.cart && localStorage.getItem('cart-items')) {
+                    JSON.parse(localStorage.getItem('cart-items')).forEach(element => {
+                        if (!containsItem(element, this.props.location.state.userdata.data.cart)) {
+                            this.props.location.state.userdata.data.cart.push(element)
+                        }
+                    });
+                    var TempCartAmount = parseFloat(localStorage.getItem('cart-items-total'))
+                    console.log(this.props.location.state.userdata.data)
+                    TempCartAmount += this.props.location.state.userdata.data.cartTotal == null ? 0 : parseFloat(this.props.location.state.userdata.data.cartTotal)
+
+                    this.setState({
+                        cartTotal: TempCartAmount,
+                        cartitems:this.props.location.state.userdata.data.cart
+                    })
+                    axios.post('http://localhost:2024/user/add-to-cart', {
+                        id: this.props.location.state.userdata.data._id,
+                        cart: this.props.location.state.userdata.data.cart,
+                        cartTotal: TempCartAmount
+                    })
+                        .then(response => {
+                            if (response.data.message === "Cart-Updated") {
+                                this.setState({
+                                    cartitems: this.props.location.state.userdata.data.cart,
+                                    cartTotal: TempCartAmount
+                                }, () => {
+                                    console.log("this.state.userdata")
+                                })
+                                localStorage.removeItem('cart-items')
+                                localStorage.removeItem('cart-items-total')
+                            }
+                        })
+                } else if (localStorage.getItem('cart-items')) {
+                    this.setState({
+                        userdata: this.props.location.state.userdata.data,
+                    })
+                    this.props.location.state.userdata.data["cart"] = JSON.parse(localStorage.getItem('cart-items'))
+                    this.props.location.state.userdata.data["cartTotal"] = parseFloat(localStorage.getItem('cart-items-total'))
+                    axios.post('http://localhost:2024/user/add-to-cart', {
+                        id: this.props.location.state.userdata.data._id,
+                        cart: this.props.location.state.userdata.data.cart,
+                        cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)
+                    })
+                        .then(response => {
+                            if (response.data.message === "Cart-Updated") {
+                                this.setState({
+                                    cartitems: this.props.location.state.userdata.data.cart,
+                                    cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)
+                                })
+                                localStorage.removeItem('cart-items')
+                                localStorage.removeItem('cart-items-total')
+                            }
+                        })
+
+                } else if (this.props.location.state.userdata.data.cart) {
+                    this.setState({
+                        cartitems: this.props.location.state.userdata.data.cart,
+                        cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)
+                    })
+                }
+            } else {
+                if (localStorage.getItem('cart-items')) {
+                    this.setState({
+                        cartitems: JSON.parse(localStorage.getItem('cart-items')),
+                        cartTotal: parseFloat(localStorage.getItem('cart-items-total'))
+                    })
+                }
             }
             var that = this
             $(window).trigger('load')
@@ -209,22 +385,38 @@ class Home extends Component {
                     that.ChangeCarouselState()
                 }
             })
-           
+        }
+        this.ShowCart = () => {
+            this.setState({
+                showcart:true
+            })
+        }
+        this.HideCart = () => {
+            this.setState({
+                showcart:false
+            })
         }
     }
-
     render() {
         return (
             <div className="home-root">
+                {
+                    this.state.showcart ? 
+                    <CartItemsModal triggerHideModal={this.HideCart} cartTotal={this.state.cartTotal} cartdata={this.state.cartitems} ></CartItemsModal>
+                    :
+                    null
+                }
                 <HeadSection></HeadSection>
-                <CustomNav history={this.props.history} userdata={this.state.userdata} loggedIn={false}></CustomNav>
-                {/* <ReactCarousel></ReactCarousel> */}
+                <CustomNav triggerShowModal={this.ShowCart} ref={this.Childref} history={this.props.history} cart_item_count={this.state.cartitems.length} userdata={this.state.userdata}></CustomNav>
                 <SearchBar></SearchBar>
+                {/* <ReactCarousel></ReactCarousel> */}
                 {/* <Tags></Tags> */}
-                <ProductGrid trigger={this.addtocart} history={this.props.history}></ProductGrid>
                 {/* {this.state.RenderCarousel ? <ReactCarousel /> : null} */}
+                <ProductGrid trigger={this.addtocart} checkoutforsingle={this.checkoutforsingle} history={this.props.history}></ProductGrid>
                 <CustomizedSnackbars></CustomizedSnackbars>
                 <WishlistSnackbars></WishlistSnackbars>
+                <AlreadyCartSnackbars></AlreadyCartSnackbars>
+                <Footer></Footer>
             </div>
         )
     }

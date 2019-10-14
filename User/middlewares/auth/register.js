@@ -9,10 +9,12 @@ module.exports = {
                         message:"409: Already Exists"
                     })
                 }else{
+                    console.log(req.body)
                     const NewUser = new Users({
                         name: req.body.name,
                         email: req.body.email,
                         password: req.body.pass,
+                        region:req.body.region,
                         registerDate: Date.now()
                     })
                     NewUser.save()

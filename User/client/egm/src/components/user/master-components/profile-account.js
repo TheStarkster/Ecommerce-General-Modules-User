@@ -202,8 +202,6 @@ class ProfileAccount extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="card-containers">
                     <div className="Acc-Details-Root">
                         <div className="acc-detail-container-1">
                             <h6>Other Shipping Addresses</h6>
@@ -213,7 +211,7 @@ class ProfileAccount extends Component {
                                 <h8>Default</h8>
                             </div>
                             <div className="Personal-Detail-2">
-                                <h8>{this.state.userdata.shipping_add.default.name+"'s"}</h8>
+                                <h8>{this.state.userdata.shipping_add.default.name + "'s"}</h8>
                                 <h8 className="AddNewAddress">Add New +</h8>
                             </div>
                         </div>

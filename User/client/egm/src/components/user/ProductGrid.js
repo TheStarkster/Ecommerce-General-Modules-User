@@ -39,6 +39,7 @@ class ProductGrid extends Component {
                 productID={this.products[i]._id}
                 history={this.props.history}
                 triggercart={this.props.trigger}
+                checkoutforsingle={this.props.checkoutforsingle}
                 id={i}
             ></ProductsCard>)
         }

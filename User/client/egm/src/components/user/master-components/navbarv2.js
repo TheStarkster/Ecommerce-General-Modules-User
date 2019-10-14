@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../../dist/styles/navbarv2.css'
+import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import $ from 'jquery'
 
 class CustomNav extends Component {
@@ -107,11 +108,14 @@ class CustomNav extends Component {
                                         }
                                     }}
                                 >
-                                    {this.props.userdata ? this.props.userdata.name : "Guest"}
+                                    {this.props.userdata ? "Hi, "+this.props.userdata.name : "Guest"}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Cart</a>
+                                <a class="nav-link nav-cart-icon" onClick={() => this.props.triggerShowModal()}>
+                                    <h7 className="cart-notify">{this.props.cart_item_count}</h7>
+                                    <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
+                                </a>
                             </li>
                         </ul>
                     </div>

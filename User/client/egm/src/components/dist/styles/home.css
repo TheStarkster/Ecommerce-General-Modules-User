@@ -14,6 +14,9 @@
 #show-wishlist-alert{
     display: none;
 }
+#show-already-cart-alert{
+    display: none;
+}
 .home-root{
     position: relative;
     width: inherit;

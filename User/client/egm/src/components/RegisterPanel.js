@@ -40,22 +40,24 @@ class RegsiterPanel extends Component {
     }
     SubmitHandler = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:5000/signup", {
-            name: this.state.name,
-            email: this.state.email,
-            pass: this.state.pass
-        })
-            .then(result => {
-                if (result.data.message === "200: Registered") {
-                    this.props.history.push({
-                        pathname: '/login',
-                        state: { message: "Registered Successfully!" }
+        axios.get('https://ipapi.co/json')
+            .then(u => {
+                console.log(u)
+                axios.post("http://localhost:2024/signup", {
+                    name: this.state.name,
+                    email: this.state.email,
+                    pass: this.state.pass,
+                    region: u.data.city + ', ' + u.data.country_name
+                })
+                    .then(result => {
+                        if (result.data.message === "200: Registered") {
+                            this.props.history.push({
+                                pathname: '/login',
+                                state: { message: "Registered Successfully!" }
+                            });
+                        }
                     });
-                    // return(
-                    //     <Redirect to="/LoginPanel"></Redirect>
-                    // )   
-                }
-            });
+            })
     }
     // input handlers
     NameHandler = (event) => {

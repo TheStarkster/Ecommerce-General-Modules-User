@@ -16,6 +16,18 @@ const user = new mongoose.Schema({
     registerDate:{
         type:String,
         required:false
+    },
+    region:{
+        type:String,
+        require:false
+    },
+    cart:{
+        type:Object,
+        require:false
+    },
+    cartTotal:{
+        type:String,
+        require:false
     }
 });
 

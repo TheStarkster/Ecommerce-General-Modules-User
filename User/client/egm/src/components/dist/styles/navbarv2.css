@@ -13,7 +13,25 @@
 .default-scrolled {
     background-color: transparent !important;
 }
-
+.nav-cart-icon>svg{
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+.nav-cart-icon>h7{
+    position: absolute;
+    top:-5px;
+    right: 12px;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius: 100px;
+    background-color: rgb(120, 231, 86);
+    color: white;
+    font-size: 12px;
+}
+.nav-cart-icon>{
+    background-color: teal;
+}
 .navbar-brand {
     display: flex;
     padding-left: 15px;

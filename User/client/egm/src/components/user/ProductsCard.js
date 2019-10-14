@@ -123,7 +123,6 @@ class ProductsCard extends Component {
                                 alt="Product"
                                 onClick={() => {
                                     this.props.triggercart(this.props);
-                                    document.getElementById('show-success').click()
                                 }}
                             />
                             <img
@@ -138,7 +137,9 @@ class ProductsCard extends Component {
                                 className="ProductOption"
                                 src={require('../assets/icons/icons8-rupee-24.png')}
                                 alt="Product"
-                                onClick={() => axios.post('http://localhost:2024/razorpay/create-order')}
+                                onClick={() =>
+                                    this.props.checkoutforsingle(this.props)
+                                }
                             />
                         </div>
                         <img

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../dist/styles/product.css'
 import { Card, Button } from 'react-bootstrap'
-import CustomNav from './Navbar'
+import CustomNav from './navbarv2'
 import $ from 'jquery'
 import ProductReviewPanel from './ProductReview'
 import Footer from './footer'
