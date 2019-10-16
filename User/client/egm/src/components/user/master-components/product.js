@@ -277,8 +277,6 @@ class Product extends Component {
                         <div className="col-12">
                             <div className="row">
                                 <ProductReviewPanel></ProductReviewPanel>
-                                <ProductReviewPanel></ProductReviewPanel>
-                                <ProductReviewPanel></ProductReviewPanel>
                             </div>
                         </div>
                     </div>
