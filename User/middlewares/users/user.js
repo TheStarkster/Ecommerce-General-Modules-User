@@ -23,5 +23,15 @@ module.exports = {
                 console.log(u.cart)
             }
         })
+    },
+    removeItem: (req,res) => {
+        console.log(req.body.cart)
+        User.updateOne({_id:req.body.id},{
+            cart:req.body.cart,
+            cartTotal:req.body.cartTotal
+        })
+        .then(u=>{
+            res.send("Item Removed")
+        })
     }
 }

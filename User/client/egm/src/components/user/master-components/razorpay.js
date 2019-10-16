@@ -10,7 +10,7 @@ class RazorPanel extends Component {
     }
     RequestOrderPayment = () => {
         let amntTxt = document.getElementById('amount').value
-        Axios.post('http://localhost:2024/api/razorpay/create-order', { amount: amntTxt, receipt: "gurkaran_order_54654" })
+        Axios.post('http://3.87.22.103:2024/api/razorpay/create-order', { amount: amntTxt, receipt: "gurkaran_order_54654" })
             .then(response => {
                 this.setState({
                     orderID: response.data.id

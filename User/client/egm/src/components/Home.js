@@ -218,7 +218,7 @@ class Home extends Component {
             cartitems: [],
             showAuthPanel: false,
             cartTotal: 0,
-            showcart:false
+            showcart: false
         }
         this.Childref = React.createRef()
         this.addtocart = (item) => {
@@ -239,13 +239,10 @@ class Home extends Component {
                     cartitems: newitem,
                     cartTotal: TempCartAmount
                 }, () => {
-                    console.log("adding cart itemd user data")
-                    console.log(this.state.userdata)
-                    console.log("adding cart itemd user data")
                     if (this.state.userdata) {
                         localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
                         localStorage.setItem('cart-items-total', this.state.cartTotal)
-                        axios.post('http://localhost:2024/user/add-to-cart', {
+                        axios.post('http://3.87.22.103:2024/user/add-to-cart', {
                             id: this.state.userdata._id,
                             cart: newitem,
                             cartTotal: TempCartAmount
@@ -255,8 +252,8 @@ class Home extends Component {
                                 console.log(response.data.message)
                                 console.log("response")
                                 if (response.data.message === "Cart-Updated") {
-                                    localStorage.removeItem('cart-items', JSON.stringify(this.state.cartitems))
-                                    localStorage.removeItem('cart-items-total', this.state.cartTotal)
+                                    localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
+                                    localStorage.setItem('cart-items-total', this.state.cartTotal)
                                 }
                             })
                     }
@@ -273,11 +270,15 @@ class Home extends Component {
                 this.props.history.push({
                     pathname: '/checkout',
                     state: {
-                        productID: productdata.productID,
-                        price: productdata.price,
-                        name: productdata.name,
-                        itempushed: 1,
-                        userdata: this.props.location.state.userdata.data
+                        cartdata: {
+                            cart: {
+                                productID: productdata.productID,
+                                price: productdata.price,
+                                name: productdata.name,
+                                itempushed: 1,
+                            }
+                        },
+                        userdata: this.props.location.state.userdata.data,
                     }
                 })
             } else {
@@ -302,8 +303,36 @@ class Home extends Component {
                     return true;
                 }
             }
-
             return false;
+        }
+        this.RemoveProduct = (item) => {
+            var tempArray = this.state.cartitems.filter(
+                function (obj) {
+                    return obj.productID !== item.productID
+                }
+            )
+            this.setState({
+                cartitems: tempArray
+            }, () => {
+                this.CalculateCartSummary()
+            })
+        }
+        this.CalculateCartSummary = () => {
+            var cart_total = 0
+            this.state.cartitems.forEach(element => {
+                cart_total += parseFloat(element.price)
+            });
+            this.setState({
+                cartTotal: cart_total
+            }, () => {
+                localStorage.setItem('cart-items',JSON.stringify(this.state.cartitems))
+                localStorage.setItem('cart-items-total',this.state.cartTotal)
+                axios.post('http://3.87.22.103:2024/user/remove-from-cart', {
+                    id: this.state.userdata._id,
+                    cart: this.state.cartitems,
+                    cartTotal:this.state.cartTotal
+                })
+            })
         }
         this.componentWillMount = () => {
             if (this.props.location.state) {
@@ -322,9 +351,9 @@ class Home extends Component {
 
                     this.setState({
                         cartTotal: TempCartAmount,
-                        cartitems:this.props.location.state.userdata.data.cart
+                        cartitems: this.props.location.state.userdata.data.cart
                     })
-                    axios.post('http://localhost:2024/user/add-to-cart', {
+                    axios.post('http://3.87.22.103:2024/user/add-to-cart', {
                         id: this.props.location.state.userdata.data._id,
                         cart: this.props.location.state.userdata.data.cart,
                         cartTotal: TempCartAmount
@@ -337,8 +366,6 @@ class Home extends Component {
                                 }, () => {
                                     console.log("this.state.userdata")
                                 })
-                                localStorage.removeItem('cart-items')
-                                localStorage.removeItem('cart-items-total')
                             }
                         })
                 } else if (localStorage.getItem('cart-items')) {
@@ -347,7 +374,7 @@ class Home extends Component {
                     })
                     this.props.location.state.userdata.data["cart"] = JSON.parse(localStorage.getItem('cart-items'))
                     this.props.location.state.userdata.data["cartTotal"] = parseFloat(localStorage.getItem('cart-items-total'))
-                    axios.post('http://localhost:2024/user/add-to-cart', {
+                    axios.post('http://3.87.22.103:2024/user/add-to-cart', {
                         id: this.props.location.state.userdata.data._id,
                         cart: this.props.location.state.userdata.data.cart,
                         cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)
@@ -358,8 +385,6 @@ class Home extends Component {
                                     cartitems: this.props.location.state.userdata.data.cart,
                                     cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)
                                 })
-                                localStorage.removeItem('cart-items')
-                                localStorage.removeItem('cart-items-total')
                             }
                         })
 
@@ -388,12 +413,12 @@ class Home extends Component {
         }
         this.ShowCart = () => {
             this.setState({
-                showcart:true
+                showcart: true
             })
         }
         this.HideCart = () => {
             this.setState({
-                showcart:false
+                showcart: false
             })
         }
     }
@@ -401,10 +426,10 @@ class Home extends Component {
         return (
             <div className="home-root">
                 {
-                    this.state.showcart ? 
-                    <CartItemsModal triggerHideModal={this.HideCart} cartTotal={this.state.cartTotal} cartdata={this.state.cartitems} ></CartItemsModal>
-                    :
-                    null
+                    this.state.showcart ?
+                        <CartItemsModal triggerRemoveItem={this.RemoveProduct} userdata={this.state.userdata} history={this.props.history} triggerHideModal={this.HideCart} cartTotal={this.state.cartTotal} cartdata={this.state.cartitems} ></CartItemsModal>
+                        :
+                        null
                 }
                 <HeadSection></HeadSection>
                 <CustomNav triggerShowModal={this.ShowCart} ref={this.Childref} history={this.props.history} cart_item_count={this.state.cartitems.length} userdata={this.state.userdata}></CustomNav>

@@ -18,6 +18,7 @@ router.get('/find-product/:query', (req, res) => products.SearchProducts(req, re
 
 // user paths...
 router.post('/user/add-to-cart', (req, res) => users.addToCart(req, res));
+router.post('/user/remove-from-cart', (req, res) => users.removeItem(req, res));
 router.post('/user/get-cart', (req, res) => users.fetchCart(req, res));
 
 // Payments Paths...

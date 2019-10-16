@@ -39,7 +39,7 @@
 .cart-total-root>.row{
     border-radius: 12px;
 }
-.cart-total-root>.row>.col-6{
+.cart-total-root>.row>.col-4{
     background-color: rgb(235, 235, 235);
     padding: 18px !important;
 }

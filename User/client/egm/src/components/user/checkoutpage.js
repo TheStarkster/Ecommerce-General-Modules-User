@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Dropdown, DropdownItem, DropdownButton } from 'react-bootstrap'
 import '../dist/styles/checkout.css'
+import PersonPinCircleTwoToneIcon from '@material-ui/icons/PersonPinCircleTwoTone';
+import ShoppingBasketTwoToneIcon from '@material-ui/icons/ShoppingBasketTwoTone';
 import Axios from 'axios'
 import CustomNav from './master-components/navbarv2'
 class CheckoutPage extends Component {
@@ -8,30 +10,83 @@ class CheckoutPage extends Component {
         super(props)
         this.state = {
             itemCount: 1,
-            orderID: "",
-            userdata: {
-                name: "Gurkaran Singh",
-                email: "sgurkaran2000@gmail.com",
-                contact: "+91 9953579196",
-                gender: "n/a",
-                citizen: "New Delhi, India",
-                shipping_add: {
-                    default: {
-                        name: "Gurkaran Singh",
-                        address: "F-19/91, Sector-15, Rohini",
-                        city: "New Delhi",
-                        state: "Delhi",
-                        country: "India",
-                        zipcode: "110089"
-                    }
-                }
-            },
+            cartTotal: this.props.location.state.cartdata.cartTotal,
+            cart: this.props.location.state.cartdata.cart
         }
-        console.log(this.props.location.state)
+        this.RemoveProduct = (item) => {
+            var tempArray = this.state.cart.filter(
+                function (obj) {
+                    return obj.productID !== item.productID
+                }
+            )
+            this.setState({
+                cart: tempArray
+            }, () => {
+                this.CalculateCartSummary()
+            })
+        }
+        this.ReCalculateCart = (event) => {
+            var cart_total = 0
+            var arr = event.target.id.split('-').map(function (item) {
+                return item.trim()
+            })
+            var itemCount = event.target.value === NaN || event.target.value < 0 || event.target.value === "" ? 0 : event.target.value
+            var itemID = arr[2]
+            this.state.cart.forEach(element => {
+                if (element.productID === itemID) {
+                    cart_total += parseFloat(element.price) * itemCount
+                } else {
+                    cart_total += parseFloat(element.price)
+                }
+            })
+            this.setState({
+                cartTotal: cart_total
+            })
+        }
+        this.CalculateCartSummary = () => {
+            var cart_total = 0
+            this.state.cart.forEach(element => {
+                cart_total += parseFloat(element.price)
+            });
+            this.setState({
+                cartTotal: cart_total
+            })
+        }
+        this.RenderCartSumary = () => {
+            this.cartsummarr = []
+            var inp_id = 1
+            this.state.cart.forEach(element => {
+                this.cartsummarr.push(
+                    <div className="checkout-cart-item-root">
+                        <div className="row">
+                            <div className="col-4 d-flex justify-content-center align-items-center">
+                                <img className="checkout-cart-item-image" src={element.image} alt="Product Image"></img>
+                            </div>
+                            <div className="col-8 checkout-items">
+                                <div className="col-12 checkout-item-name">
+                                    {element.name}
+                                </div>
+                                <div className="col-12">
+                                    Rs.{element.price}
+                                </div>
+                                <div className="col-12">
+                                    <input type="number" id={"inc-inp-" + element.productID} placeholder="1" onChange={this.ReCalculateCart} className="qty-inp"></input>
+                                </div>
+                                <div className="col-12">
+                                    <i class="fas fa-times-circle" onClick={() => this.RemoveProduct(element)}> Remove Product</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+                inp_id += 1
+            });
+            return this.cartsummarr
+        }
     }
     RequestOrderPayment = () => {
         // let amntTxt = document.getElementById('amount').value
-        Axios.post('http://localhost:2024/api/razorpay/create-order', { amount: (parseFloat(this.props.location.state.price) + 28) * parseFloat(this.state.itemCount) * 100, receipt: "gurkaran_order_54654" })
+        Axios.post('http://3.87.22.103:2024/api/razorpay/create-order', { amount: (parseFloat(this.props.location.state.price) + 28) * parseFloat(this.state.itemCount) * 100, receipt: "gurkaran_order_54654" })
             .then(response => {
                 this.setState({
                     orderID: response.data.id
@@ -65,107 +120,91 @@ class CheckoutPage extends Component {
     }
     render() {
         return (
-            <div>
-                <CustomNav history={this.props.history} userdata={this.props.location.state.userdata} loggedIn={false}></CustomNav>
-                <div className="checkout-page-root container jumbotron">
-                    <div className="col-12">
-                        <div className="row">
-                            <div className="col-6">
-                                <div className="row">
-                                    <div className="col-12">
-                                        <h3>Cart Summary</h3>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                Name:
-                                            </div>
-                                            <div className="col-8">
-                                                <h6>{this.props.location.state.itempushed === 1 ? this.props.location.state.name : null}</h6>
-                                            </div>
+            <div className="checkout-root">
+                <CustomNav history={this.props.history} userdata={this.props.location.state.userdata}></CustomNav>
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-6 checkout-detail-col">
+                            <div className="row">
+                                <div className="col-12">
+                                    <h2>Checkout</h2>
+                                </div>
+                                <div className="col-12 checkout-detail-label">
+                                    SHIPPING DETAILS
+                                </div>
+                                <div className="hr"></div>
+                                <div className="col-12">
+                                    {this.props.shipping_details ?
+                                        this.props.shipping_details.default
+                                        :
+                                        <div>
+                                            <h6 className="warning">No Address Found!</h6>
+                                            <button className="address-btn btn btn-primary"><PersonPinCircleTwoToneIcon></PersonPinCircleTwoToneIcon>Add New Address</button>
                                         </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                No. of Package:
-                                            </div>
-                                            <div className="col-6">
-                                                <div className="row">
-                                                    <div className="col-3 d-flex justify-content-center">
-                                                        <button className="itemcount-btn" onClick={() => this.setState({ itemCount: parseInt(document.getElementById('item-count-txt').value) + 1 })}>+</button>
-                                                    </div>
-                                                    <div className="col-6">
-                                                        <input type="number" id="item-count-txt" value={this.state.itemCount} className="itemcount-input"></input>
-                                                    </div>
-                                                    <div className="col-3 d-flex justify-content-center">
-                                                        <button className="itemcount-btn" onClick={() => parseInt(document.getElementById('item-count-txt').value) > 1 ? this.setState({ itemCount: parseInt(document.getElementById('item-count-txt').value) - 1 }) : null}>-</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="hr"></div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                <h7 className="sub-amounts">Tax (GST)</h7>
-                                            </div>
-                                            <div className="col-8">
-                                                <h7 className="sub-amounts">Rs.28</h7>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                Total:
-                                            </div>
-                                            <div className="col-8">
-                                                <h5>Rs.{(parseFloat(this.props.location.state.price) + 28) * parseFloat(this.state.itemCount)}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
+                                </div>
+                                <div className="col-12 checkout-detail-label">
+                                    PAYMENT DETAILS
+                            </div>
+                                <div className="hr"></div>
+                                <div className="col-12">
+                                    <input className="form-control checkout-input" placeholder="Full Name"></input>
+                                    <input className="form-control checkout-input" placeholder="Email"></input>
+                                    <input className="form-control checkout-input" placeholder="Contact"></input>
+                                    <button className="purchase-btn btn btn-success"><ShoppingBasketTwoToneIcon></ShoppingBasketTwoToneIcon>PURCHASE</button>
                                 </div>
                             </div>
-                            <div className="col-6">
-                                <div className="col-12">
-                                    <input type="text" id="name" className="form-control chk-out-input" placeholder="First and Last Name"></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="email" id="email" className="form-control chk-out-input" placeholder="Email"></input>
-                                </div>
-                                <div className="col-12">
-                                    <input type="phone" id="phone" className="form-control chk-out-input" placeholder="Contact"></input>
-                                </div>
-                                {this.state.userdata.shipping_add ?
+                        </div>
+                        <div className="col-6">
+                            <div className="col-12">
+                                <div className="row">
                                     <div className="col-12">
                                         <div className="row">
+                                            <div className="col-4 checkout-detail-label">
+                                                YOUR ORDER
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="hr"></div>
+                                    <div className="col-10 checkout-items-all">
+                                        {this.RenderCartSumary()}
+                                    </div>
+                                    <div className="hr"></div>
+                                    <div className="col-12 checkout-items-calc">
+                                        <div className="row">
+                                            <div className="col-6 calc-label">
+                                                SUBTOTAL
+                                            </div>
                                             <div className="col-6">
-                                                <Dropdown>
-                                                    <DropdownButton title={this.state.userdata.shipping_add.default.name + "'s"}>
-                                                        <DropdownItem onSelect={() => this.setState({ DropDownTitle: "Super-Admin" })}>Super-Admin</DropdownItem>
-                                                        {/* <DropdownItem onSelect={() => this.setState({ DropDownTitle: "Admin" })}>Admin</DropdownItem> */}
-                                                        {/* <DropdownItem onSelect={() => this.setState({ DropDownTitle: "Executive" })}>Executive</DropdownItem> */}
-                                                        <DropdownItem onSelect={() => this.setState({ DropDownTitle: "Developer" })}>Developer</DropdownItem>
-                                                    </DropdownButton>
-                                                </Dropdown>
+                                                Rs. {this.state.cartTotal}
                                             </div>
-                                            <div className="col-6 d-flex align-items-center justify-content-center">
-                                                <button className="btn btn-success btn-pay-now" id="rzp-button1" onClick={() => this.RequestOrderPayment()}>Pay Now</button>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-6 calc-label">
+                                                SHIPPING
+                                            </div>
+                                            <div className="col-6">
+                                                Rs. 0
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-6 calc-label">
+                                                TAXES
+                                            </div>
+                                            <div className="col-6">
+                                                Rs. 0
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-6 calc-label">
+                                                TOTAL
+                                            </div>
+                                            <div className="col-6">
+                                                Rs. {this.state.cartTotal}
                                             </div>
                                         </div>
                                     </div>
-                                    :
-                                    <div className="col-12 d-flex align-items-center justify-content-center">
-                                        <button className="btn btn-primary">Add Address</button>
-                                        <div className="col-6 d-flex align-items-center justify-content-center">
-                                            <button className="btn btn-success">Pay Now</button>
-                                        </div>
-                                    </div>
-                                }
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -176,3 +215,23 @@ class CheckoutPage extends Component {
 }
 
 export default CheckoutPage
+
+
+// orderID: "",
+//             userdata: {
+//                 name: "Gurkaran Singh",
+//                 email: "sgurkaran2000@gmail.com",
+//                 contact: "+91 9953579196",
+//                 gender: "n/a",
+//                 citizen: "New Delhi, India",
+//                 shipping_add: {
+//                     default: {
+//                         name: "Gurkaran Singh",
+//                         address: "F-19/91, Sector-15, Rohini",
+//                         city: "New Delhi",
+//                         state: "Delhi",
+//                         country: "India",
+//                         zipcode: "110089"
+//                     }
+//                 }
+//             },

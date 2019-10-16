@@ -11,7 +11,6 @@ class CustomNav extends Component {
             showAuthPanel: false
         }
         this.CloseAuthPanel = this.CloseAuthPanel.bind(this)
-
         this.componentDidMount = () => {
             var scrollState = 'top';
             $(window).scroll(function () {
@@ -25,6 +24,17 @@ class CustomNav extends Component {
                 else if ((scrollPos === 0) && (scrollState === 'scrolled')) {
                     $('.navbar').addClass('scrolled')
                     scrollState = 'top';
+                }
+            })
+        }
+        this.componentWillMount = () => {
+            $(window).trigger('load')
+            $(window).on('resize load', function () {
+                var win = $(this)
+                if (win.width() <= 960) {
+                    $('.cart').css('display','none')
+                }else if(win.width() > 960){
+                    $('.cart-bottom-right-root').css('display','none')
                 }
             })
         }
@@ -76,6 +86,10 @@ class CustomNav extends Component {
             // </div>
 
             <div>
+                <div className="cart-bottom-right-root" onClick={() => this.props.triggerShowModal()}>
+                    <h7 className="cart-notify-mobile">{this.props.cart_item_count}</h7>
+                    <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
+                </div>
                 {this.state.showAuthPanel === true ? <UserSessionCard history={this.props.history} closePanel={this.CloseAuthPanel} /> : null}
                 <nav class="navbar default-scrolled navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><div className="Dental">Dental</div><div className="Stall">Stall</div></a>
@@ -94,7 +108,7 @@ class CustomNav extends Component {
                                 <a class="nav-link" href="#">Deals</a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav mr-auto nav-actions">
+                        <ul class="navbar-nav mr-auto nav-actions cart">
                             <li class="nav-item">
                                 <a class="nav-link"
                                     onClick={() => {
@@ -108,15 +122,21 @@ class CustomNav extends Component {
                                         }
                                     }}
                                 >
-                                    {this.props.userdata ? "Hi, "+this.props.userdata.name : "Guest"}
+                                    {this.props.userdata ? "Hi, " + this.props.userdata.name : "Guest"}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav-cart-icon" onClick={() => this.props.triggerShowModal()}>
-                                    <h7 className="cart-notify">{this.props.cart_item_count}</h7>
-                                    <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
-                                </a>
-                            </li>
+                            {
+                                this.props.history.location.pathname === "/checkout" ?
+                                    null
+                                    :
+                                    <li class="nav-item">
+                                        <a class="nav-link nav-cart-icon" onClick={() => this.props.triggerShowModal()}>
+                                            <h7 className="cart-notify">{this.props.cart_item_count}</h7>
+                                            <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
+                                        </a>
+                                    </li>
+                            }
+
                         </ul>
                     </div>
                 </nav>

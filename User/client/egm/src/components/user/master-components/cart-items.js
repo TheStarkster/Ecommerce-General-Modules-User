@@ -5,7 +5,20 @@ import Axios from 'axios'
 class CartItemsModal extends Component {
     constructor(props) {
         super(props)
+        this.GotoCheckout = () => {
+            this.props.history.push({
+                pathname: '/checkout',
+                state: {
+                    cartdata: {
+                        cart: this.props.cartdata,
+                        cartTotal:this.props.cartTotal
+                    },
+                    userdata: this.props.userdata,
+                }
+            })
+        }
     }
+
     RenderCartItems() {
         var CartItems = []
         this.props.cartdata.forEach(element => {
@@ -23,36 +36,17 @@ class CartItemsModal extends Component {
                                 <h4>Rs.{element.price}</h4>
                             </div>
                             <div className="col-12 cart-product-price">
-                                <i class="fas fa-times-circle"> Delete Product</i>
+                                <i class="fas fa-times-circle" onClick={() => this.props.triggerRemoveItem(element)}> Delete Product</i>
                             </div>
                         </div>
                     </div>
                 </div>
-                // <li class="media">
-                //     <div class="media-body">
-                //         <div className="col-12">
-                //             <div className="row">
-                //                 <div className="col-4">
-                //                     <img src={element.image} alt="..." className="cart-product-image"></img>
-                //                 </div>
-                //                 <div className="col-8 cart-item-details">
-                //                     <h4>{element.name}</h4>
-                //                     <h4>Rs. {element.price}</h4>
-                //                     {/* <h4>Qty: {element.name}</h4> */}
-                //                     <i class="fas fa-times-circle"> Delete Product</i>
-                //                 </div>
-                //             </div>
-                //         </div>
-                //     </div>
-                // </li>
             )
         })
         return (CartItems)
     }
     render() {
-        console.log("this.props.cartdata")
-        console.log(this.props.cartdata)
-        console.log("this.props.cartdata")
+
         return (
             <div>
                 <div className="cart-items-root-bg"></div>
@@ -70,11 +64,14 @@ class CartItemsModal extends Component {
                         </div>
                         <div className="col-12 cart-total-root">
                             <div className="row">
-                                <div className="col-6 cart-total">
+                                <div className="col-4 cart-total">
                                     <h4>Cart Total</h4>
                                 </div>
-                                <div className="col-6 cart-total">
+                                <div className="col-4 cart-total">
                                     <h4>Rs. {this.props.cartTotal}</h4>
+                                </div>
+                                <div className="col-4 cart-total">
+                                    <button className="btn btn-success" onClick={() => this.GotoCheckout()}>Checkout</button>
                                 </div>
                             </div>
                         </div>

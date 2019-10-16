@@ -1,6 +1,6 @@
 .Footer-Root{
     position: relative;
-    z-index: 99999999;
+    z-index: -99999999;
     bottom: 0;
     height: 350px;
     width:100%;

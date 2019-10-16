@@ -41,7 +41,7 @@ class LoginPanel extends Component {
 
     SubmitHandler = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:2024/signin", {
+        axios.post("http://3.87.22.103:2024/signin", {
             email: this.state.email,
             pass: this.state.pass
         })
