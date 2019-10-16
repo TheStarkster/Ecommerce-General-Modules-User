@@ -32,9 +32,9 @@ class CustomNav extends Component {
             $(window).on('resize load', function () {
                 var win = $(this)
                 if (win.width() <= 960) {
-                    $('.cart').css('display','none')
-                }else if(win.width() > 960){
-                    $('.cart-bottom-right-root').css('display','none')
+                    $('.cart').css('display', 'none')
+                } else if (win.width() > 960) {
+                    $('.cart-bottom-right-root').css('display', 'none')
                 }
             })
         }
@@ -86,10 +86,16 @@ class CustomNav extends Component {
             // </div>
 
             <div>
-                <div className="cart-bottom-right-root" onClick={() => this.props.triggerShowModal()}>
-                    <h7 className="cart-notify-mobile">{this.props.cart_item_count}</h7>
-                    <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
-                </div>
+                {
+                    this.props.history.location.pathname === "/checkout" ?
+                        null
+                        :
+                        <div className="cart-bottom-right-root" onClick={() => this.props.triggerShowModal()}>
+                            <h7 className="cart-notify-mobile">{this.props.cart_item_count}</h7>
+                            <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
+                        </div>
+                }
+
                 {this.state.showAuthPanel === true ? <UserSessionCard history={this.props.history} closePanel={this.CloseAuthPanel} /> : null}
                 <nav class="navbar default-scrolled navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><div className="Dental">Dental</div><div className="Stall">Stall</div></a>

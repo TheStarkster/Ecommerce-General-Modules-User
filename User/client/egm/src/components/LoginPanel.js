@@ -105,8 +105,8 @@ class LoginPanel extends Component {
                                     <input type="email" className="form-control Panelinput" id="email" name="txtemail" placeholder="email@example.com" onChange={this.EmailHandler} />
                                     <input type="password" className="form-control Panelinput" id="pass" name="txtpassword" placeholder="Password" onChange={this.PasswordHandler} />
                                 </Card.Text>
-                                <Button variant="primary" className="Panelbutton" type="submit">Sign Up</Button>
-                                <Button variant="outline-secondary" type="button" className="NextPanel Panelbutton" onClick={() => { this.props.history.push('/') }}>Sign In</Button>
+                                <Button variant="primary" className="Panelbutton" type="submit">Sign In</Button>
+                                <Button variant="outline-secondary" type="button" className="NextPanel Panelbutton" onClick={() => { this.props.history.push('/') }}>Sign Up</Button>
                             </Card.Body>
                         </Card>
                         {this.state.ShowSocialPanel ?
