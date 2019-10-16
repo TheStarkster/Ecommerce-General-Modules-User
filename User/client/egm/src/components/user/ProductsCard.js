@@ -149,10 +149,10 @@ class ProductsCard extends Component {
                             alt="Product"
                         />
                     </div>
-                    <Card.Title className="ProductName" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>{this.props.name}</Card.Title>
-                    <Card.Title className="ProductBrief" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>{this.props.disc}</Card.Title>
+                    <Card.Title className="ProductName" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image, userdata: this.props.userdata } })}>{this.props.name}</Card.Title>
+                    <Card.Title className="ProductBrief" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image, userdata: this.props.userdata } })}>{this.props.disc}</Card.Title>
                     <Card.Title>
-                        <div className="ProductPrice" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image } })}>
+                        <div className="ProductPrice" onClick={() => this.props.history.push({ pathname: '/product', state: { ProductName: this.props.name, ProductBrief: this.props.disc, ProductPrice: this.props.price, stock: true, ProductImage: this.props.image, userdata: this.props.userdata } })}>
                             Rs. {this.props.price}<Badge variant="success">In Stock</Badge>
                         </div>
                     </Card.Title>

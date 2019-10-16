@@ -36,6 +36,7 @@ class ProductGrid extends Component {
                 disc={this.products[i].disc}
                 price={this.products[i].price}
                 image={this.products[i].image}
+                userdata={this.props.userdata}
                 productID={this.products[i]._id}
                 history={this.props.history}
                 triggercart={this.props.trigger}

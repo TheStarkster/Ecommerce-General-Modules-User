@@ -416,6 +416,13 @@ class Home extends Component {
                 showcart: true
             })
         }
+        // this.ShareData = () => {
+        //     var ShareObj = {
+        //         userdata:this.state.userdata,
+        //         cart:this.state.cartitems
+        //     }
+        //     return ShareObj
+        // }
         this.HideCart = () => {
             this.setState({
                 showcart: false
@@ -437,7 +444,7 @@ class Home extends Component {
                 {/* <ReactCarousel></ReactCarousel> */}
                 {/* <Tags></Tags> */}
                 {/* {this.state.RenderCarousel ? <ReactCarousel /> : null} */}
-                <ProductGrid trigger={this.addtocart} checkoutforsingle={this.checkoutforsingle} history={this.props.history}></ProductGrid>
+                <ProductGrid ShareData={this.ShareData} userdata={this.state.userdata} trigger={this.addtocart} checkoutforsingle={this.checkoutforsingle} history={this.props.history}></ProductGrid>
                 <CustomizedSnackbars></CustomizedSnackbars>
                 <WishlistSnackbars></WishlistSnackbars>
                 <AlreadyCartSnackbars></AlreadyCartSnackbars>

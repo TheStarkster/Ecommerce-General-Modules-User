@@ -11,7 +11,7 @@ class CartItemsModal extends Component {
                 state: {
                     cartdata: {
                         cart: this.props.cartdata,
-                        cartTotal:this.props.cartTotal
+                        cartTotal: this.props.cartTotal
                     },
                     userdata: this.props.userdata,
                 }
@@ -62,7 +62,7 @@ class CartItemsModal extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 cart-total-root">
+                        {/* <div className="col-12 cart-total-root">
                             <div className="row">
                                 <div className="col-4 cart-total">
                                     <h4>Cart Total</h4>
@@ -73,6 +73,21 @@ class CartItemsModal extends Component {
                                 <div className="col-4 cart-total">
                                     <button className="btn btn-success" onClick={() => this.GotoCheckout()}>Checkout</button>
                                 </div>
+                            </div>
+                        </div> */}
+                        <div className="col-12 cart-total-root">
+                            <div className="col-12">
+                                <div className="row">
+                                    <div className="col-6 cart-total">
+                                        <h4>Cart Total</h4>
+                                    </div>
+                                    <div className="col-6 cart-total">
+                                        <h4>Rs. {this.props.cartTotal}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 cart-total">
+                                <button className="btn btn-success" style={{ width: '100%' }} onClick={() => this.GotoCheckout()}>Checkout</button>
                             </div>
                         </div>
                     </div>

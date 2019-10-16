@@ -8,7 +8,8 @@ class CustomNav extends Component {
         super(props)
         this.state = {
             navExpanded: false,
-            showAuthPanel: false
+            showAuthPanel: false,
+            userdata: {}
         }
         this.CloseAuthPanel = this.CloseAuthPanel.bind(this)
         this.componentDidMount = () => {
@@ -28,6 +29,9 @@ class CustomNav extends Component {
             })
         }
         this.componentWillMount = () => {
+            if (this.props.location) {
+                console.log(this.props.location.state.ShareData())
+            }
             $(window).trigger('load')
             $(window).on('resize load', function () {
                 var win = $(this)
@@ -53,38 +57,6 @@ class CustomNav extends Component {
     }
     render() {
         return (
-            // <div>
-            //     {this.state.showAuthPanel === true ? <UserSessionCard history={this.props.history} closePanel={this.CloseAuthPanel} /> : null}
-            //     <div className="Navbar">
-            //         <div className="NavBarScreen">
-            //             <button className="btn btn-secondary expand" onClick={() => this.HandlerExpand()}>
-            //                 <i className="fas fa-chevron-down"></i>
-            //             </button>
-            //             <div>
-            //                 <ul>
-            //                     <li className="BrandName">DentalStall</li>
-            //                     <li>Products</li>
-            //                     <li>Catagory</li>
-            //                     <li>Deals</li>
-            //                 </ul>
-            //                 <ul>
-            //                     <li className="Other-li" onClick={() => {
-            //                         if (!this.props.userdata) { this.ValidateUserSession() } else {
-            //                             this.props.history.push({
-            //                                 pathname: '/profile',
-            //                                 state: {
-            //                                     userdata: this.props.userdata
-            //                                 }
-            //                             })
-            //                         }
-            //                     }}>{this.props.userdata ? this.props.userdata.name : "Guest"}</li>
-            //                     <li className="Other-li">Cart</li>
-            //                 </ul>
-            //             </div>
-            //         </div>
-            //     </div>
-            // </div>
-
             <div>
                 {
                     this.props.history.location.pathname === "/checkout" ?
@@ -95,7 +67,6 @@ class CustomNav extends Component {
                             <ShoppingCartTwoToneIcon></ShoppingCartTwoToneIcon>
                         </div>
                 }
-
                 {this.state.showAuthPanel === true ? <UserSessionCard history={this.props.history} closePanel={this.CloseAuthPanel} /> : null}
                 <nav class="navbar default-scrolled navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#"><div className="Dental">Dental</div><div className="Stall">Stall</div></a>
@@ -142,7 +113,6 @@ class CustomNav extends Component {
                                         </a>
                                     </li>
                             }
-
                         </ul>
                     </div>
                 </nav>

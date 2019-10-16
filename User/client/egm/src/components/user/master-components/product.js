@@ -3,18 +3,66 @@ import '../../dist/styles/product.css'
 import { Card, Button } from 'react-bootstrap'
 import CustomNav from './navbarv2'
 import $ from 'jquery'
+import axios from 'axios'
 import ProductReviewPanel from './ProductReview'
 import Footer from './footer'
 import CardCarousel from './CardCarousel'
+import CartItemsModal from '../master-components/cart-items'
 
 class Product extends Component {
     constructor(props) {
         super(props)
         this.state = {
             OperationPanelBelowImage: false,
-            NumberOfRecommendedCards: 2
+            NumberOfRecommendedCards: 2,
+            cartTotal: this.props.location.state.userdata.cartTotal,
+            cartitems: this.props.location.state.userdata.cart,
+            showcart: false
         }
+        console.log(this.state)
         this.componentWillMount = () => {
+
+            this.RemoveProduct = (item) => {
+                var tempArray = this.state.cartitems.filter(
+                    function (obj) {
+                        return obj.productID !== item.productID
+                    }
+                )
+                this.setState({
+                    cartitems: tempArray
+                }, () => {
+                    this.CalculateCartSummary()
+                })
+            }
+
+            this.CalculateCartSummary = () => {
+                var cart_total = 0
+                this.state.cartitems.forEach(element => {
+                    cart_total += parseFloat(element.price)
+                });
+                this.setState({
+                    cartTotal: cart_total
+                }, () => {
+                    localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
+                    localStorage.setItem('cart-items-total', this.state.cartTotal)
+                    axios.post('http://3.87.22.103:2024/user/remove-from-cart', {
+                        id: this.props.location.state.userdata._id,
+                        cart: this.state.cartitems,
+                        cartTotal: this.state.cartTotal
+                    })
+                })
+            }
+            this.ShowCart = () => {
+                this.setState({
+                    showcart: true
+                })
+            }
+            this.HideCart = () => {
+                this.setState({
+                    showcart: false
+                })
+            }
+            console.log(this.props.location.state.userdata)
             if (this.props.location.state.stock) {
                 $('.ProductMainStockStatus').addClass('badge-success')
             } else {
@@ -64,8 +112,14 @@ class Product extends Component {
     render() {
         return (
             <div>
-                <CustomNav />
-                <div className="col-lg">
+                {
+                    this.state.showcart ?
+                        <CartItemsModal cart_item_count={this.state.cartitems.length} triggerRemoveItem={this.RemoveProduct} userdata={this.props.location.state.userdata} history={this.props.history} triggerHideModal={this.HideCart} cartTotal={this.state.cartTotal} cartdata={this.state.cartitems} ></CartItemsModal>
+                        :
+                        null
+                }
+                <CustomNav triggerShowModal={this.ShowCart} ref={this.Childref} history={this.props.history} cart_item_count={this.state.cartitems.length} userdata={this.props.location.state.userdata}></CustomNav>
+                <div className="col-lg Product-Main-Root">
                     <div className="row ProductRoot">
                         <div className="col-6 ProductMainImage">
                             <div className="row">
@@ -228,8 +282,8 @@ class Product extends Component {
                             </div>
                         </div>
                     </div>
+                    <Footer></Footer>
                 </div>
-                <Footer></Footer>
             </div>
         )
     }
