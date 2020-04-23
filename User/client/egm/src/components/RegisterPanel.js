@@ -43,7 +43,7 @@ class RegsiterPanel extends Component {
         axios.get('https://ipapi.co/json')
             .then(u => {
                 console.log(u)
-                axios.post("http://3.87.22.103:2024/signup", {
+                axios.post("http://13.59.134.74:2024/signup", {
                     name: this.state.name,
                     email: this.state.email,
                     pass: this.state.pass,

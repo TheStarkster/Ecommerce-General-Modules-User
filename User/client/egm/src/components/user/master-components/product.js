@@ -45,7 +45,7 @@ class Product extends Component {
                 }, () => {
                     localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
                     localStorage.setItem('cart-items-total', this.state.cartTotal)
-                    axios.post('http://3.87.22.103:2024/user/remove-from-cart', {
+                    axios.post('http://13.59.134.74:2024/user/remove-from-cart', {
                         id: this.props.location.state.userdata._id,
                         cart: this.state.cartitems,
                         cartTotal: this.state.cartTotal

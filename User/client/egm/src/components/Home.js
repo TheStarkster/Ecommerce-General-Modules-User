@@ -242,7 +242,7 @@ class Home extends Component {
                     if (this.state.userdata) {
                         localStorage.setItem('cart-items', JSON.stringify(this.state.cartitems))
                         localStorage.setItem('cart-items-total', this.state.cartTotal)
-                        axios.post('http://3.87.22.103:2024/user/add-to-cart', {
+                        axios.post('http://13.59.134.74:2024/user/add-to-cart', {
                             id: this.state.userdata._id,
                             cart: newitem,
                             cartTotal: TempCartAmount
@@ -327,7 +327,7 @@ class Home extends Component {
             }, () => {
                 localStorage.setItem('cart-items',JSON.stringify(this.state.cartitems))
                 localStorage.setItem('cart-items-total',this.state.cartTotal)
-                axios.post('http://3.87.22.103:2024/user/remove-from-cart', {
+                axios.post('http://13.59.134.74:2024/user/remove-from-cart', {
                     id: this.state.userdata._id,
                     cart: this.state.cartitems,
                     cartTotal:this.state.cartTotal
@@ -353,7 +353,7 @@ class Home extends Component {
                         cartTotal: TempCartAmount,
                         cartitems: this.props.location.state.userdata.data.cart
                     })
-                    axios.post('http://3.87.22.103:2024/user/add-to-cart', {
+                    axios.post('http://13.59.134.74:2024/user/add-to-cart', {
                         id: this.props.location.state.userdata.data._id,
                         cart: this.props.location.state.userdata.data.cart,
                         cartTotal: TempCartAmount
@@ -374,7 +374,7 @@ class Home extends Component {
                     })
                     this.props.location.state.userdata.data["cart"] = JSON.parse(localStorage.getItem('cart-items'))
                     this.props.location.state.userdata.data["cartTotal"] = parseFloat(localStorage.getItem('cart-items-total'))
-                    axios.post('http://3.87.22.103:2024/user/add-to-cart', {
+                    axios.post('http://13.59.134.74:2024/user/add-to-cart', {
                         id: this.props.location.state.userdata.data._id,
                         cart: this.props.location.state.userdata.data.cart,
                         cartTotal: parseFloat(this.props.location.state.userdata.data.cartTotal)

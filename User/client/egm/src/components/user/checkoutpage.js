@@ -86,7 +86,7 @@ class CheckoutPage extends Component {
     }
     RequestOrderPayment = () => {
         // let amntTxt = document.getElementById('amount').value
-        Axios.post('http://3.87.22.103:2024/api/razorpay/create-order', { amount: (parseFloat(this.props.location.state.price) + 28) * parseFloat(this.state.itemCount) * 100, receipt: "gurkaran_order_54654" })
+        Axios.post('http://13.59.134.74:2024/api/razorpay/create-order', { amount: (parseFloat(this.props.location.state.price) + 28) * parseFloat(this.state.itemCount) * 100, receipt: "gurkaran_order_54654" })
             .then(response => {
                 this.setState({
                     orderID: response.data.id
